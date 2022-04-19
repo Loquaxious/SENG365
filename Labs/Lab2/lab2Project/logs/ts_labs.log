@@ -1,0 +1,593 @@
+2022-03-03 16:16:07:167 [32minfo[39m:
+[32mSuccessfully connected to database[39m
+2022-03-03 16:16:07:167 [32minfo[39m:
+[32mListening on port: 3000[39m
+2022-03-07 20:18:47:1847 [32minfo[39m:
+[32mSuccessfully connected to database[39m
+2022-03-07 20:18:47:1847 [32minfo[39m:
+[32mListening on port: 3000[39m
+2022-03-07 20:19:07:197 [35mhttp[39m:
+[35mGET all users[39m
+2022-03-07 20:19:07:197 [32minfo[39m:
+[32mGetting all the users from the database[39m
+2022-03-07 20:25:23:2523 [35mhttp[39m:
+[35mGET all users[39m
+2022-03-07 20:25:23:2523 [32minfo[39m:
+[32mGetting all the users from the database[39m
+2022-03-07 20:29:46:2946 [32minfo[39m:
+[32mSuccessfully connected to database[39m
+2022-03-07 20:29:46:2946 [32minfo[39m:
+[32mListening on port: 3000[39m
+2022-03-07 20:29:55:2955 [35mhttp[39m:
+[35mGET all users[39m
+2022-03-07 20:29:55:2955 [32minfo[39m:
+[32mGetting all the users from the database[39m
+2022-03-07 20:40:41:4041 [32minfo[39m:
+[32mSuccessfully connected to database[39m
+2022-03-07 20:40:41:4041 [32minfo[39m:
+[32mListening on port: 3000[39m
+2022-03-07 20:41:54:4154 [32minfo[39m:
+[32mSuccessfully connected to database[39m
+2022-03-07 20:41:54:4154 [32minfo[39m:
+[32mListening on port: 3000[39m
+2022-03-07 20:45:17:4517 [32minfo[39m:
+[32mSuccessfully connected to database[39m
+2022-03-07 20:45:17:4517 [32minfo[39m:
+[32mListening on port: 3000[39m
+2022-03-07 20:45:26:4526 [35mhttp[39m:
+[35mGET all users[39m
+2022-03-07 20:45:26:4526 [32minfo[39m:
+[32mGetting all the users from the database[39m
+2022-03-07 20:55:08:558 [35mhttp[39m:
+[35mGET all users[39m
+2022-03-07 20:55:08:558 [32minfo[39m:
+[32mGetting all the users from the database[39m
+2022-03-07 21:13:56:1356 [32minfo[39m:
+[32mSuccessfully connected to database[39m
+2022-03-07 21:13:56:1356 [32minfo[39m:
+[32mListening on port: 3000[39m
+2022-03-07 21:13:59:1359 [35mhttp[39m:
+[35mGET all users[39m
+2022-03-07 21:13:59:1359 [32minfo[39m:
+[32mGetting all the users from the database[39m
+2022-03-07 21:14:57:1457 [35mhttp[39m:
+[35mGET all users[39m
+2022-03-07 21:14:57:1457 [32minfo[39m:
+[32mGetting all the users from the database[39m
+2022-03-07 21:23:55:2355 [35mhttp[39m:
+[35mGET all users[39m
+2022-03-07 21:23:55:2355 [32minfo[39m:
+[32mGetting all the users from the database[39m
+2022-03-07 21:24:49:2449 [32minfo[39m:
+[32mSuccessfully connected to database[39m
+2022-03-07 21:24:49:2449 [32minfo[39m:
+[32mListening on port: 3000[39m
+2022-03-07 22:13:40:1340 [32minfo[39m:
+[32mSuccessfully connected to database[39m
+2022-03-07 22:13:40:1340 [32minfo[39m:
+[32mListening on port: 3000[39m
+2022-03-07 22:13:46:1346 [35mhttp[39m:
+[35mGET all users[39m
+2022-03-07 22:13:46:1346 [32minfo[39m:
+[32mGetting all the users from the database[39m
+2022-03-07 22:15:44:1544 [35mhttp[39m:
+[35mPOST create a user with username:[39m
+[35mundefined[39m
+2022-03-07 22:17:03:173 [32minfo[39m:
+[32mSuccessfully connected to database[39m
+2022-03-07 22:17:03:173 [32minfo[39m:
+[32mListening on port: 3000[39m
+2022-03-07 22:17:13:1713 [35mhttp[39m:
+[35mGET single user id: 1[39m
+2022-03-07 22:17:13:1713 [32minfo[39m:
+[32mGetting user 1 from the database[39m
+2022-03-07 22:17:47:1747 [35mhttp[39m:
+[35mPOST create a user with username:[39m
+[35mundefined[39m
+2022-03-07 22:19:16:1916 [35mhttp[39m:
+[35mGET single user id: 1[39m
+2022-03-07 22:19:16:1916 [32minfo[39m:
+[32mGetting user 1 from the database[39m
+2022-03-07 22:19:26:1926 [35mhttp[39m:
+[35mGET single user id: 26029766[39m
+2022-03-07 22:19:26:1926 [32minfo[39m:
+[32mGetting user 26029766 from the database[39m
+2022-03-07 22:21:34:2134 [35mhttp[39m:
+[35mPOST create a user with username:[39m
+[35mpostman[39m
+2022-03-07 22:21:34:2134 [32minfo[39m:
+[32mAdding user postman to the database[39m
+2022-03-07 22:21:50:2150 [35mhttp[39m:
+[35mGET all users[39m
+2022-03-07 22:21:50:2150 [32minfo[39m:
+[32mGetting all the users from the database[39m
+2022-03-07 22:22:40:2240 [35mhttp[39m:
+[35mPOST create a user with username:[39m
+[35mabc00[39m
+2022-03-07 22:22:40:2240 [32minfo[39m:
+[32mAdding user abc00 to the database[39m
+2022-03-08 15:43:22:4322 [32minfo[39m:
+[32mSuccessfully connected to database[39m
+2022-03-08 15:43:22:4322 [32minfo[39m:
+[32mListening on port: 3000[39m
+2022-03-08 15:44:24:4424 [35mhttp[39m:
+[35mGET all users[39m
+2022-03-08 15:44:24:4424 [32minfo[39m:
+[32mGetting all the users from the database[39m
+2022-03-08 15:44:44:4444 [35mhttp[39m:
+[35mPUT update user id: undefined username with undefined[39m
+2022-03-08 15:45:21:4521 [35mhttp[39m:
+[35mGET all users[39m
+2022-03-08 15:45:21:4521 [32minfo[39m:
+[32mGetting all the users from the database[39m
+2022-03-08 15:47:00:470 [32minfo[39m:
+[32mSuccessfully connected to database[39m
+2022-03-08 15:47:00:470 [32minfo[39m:
+[32mListening on port: 3000[39m
+2022-03-08 15:47:53:4753 [35mhttp[39m:
+[35mPOST create a user with username:[39m
+[35mlpl29[39m
+2022-03-08 15:47:53:4753 [32minfo[39m:
+[32mAdding user lpl29 to the database[39m
+2022-03-08 15:48:48:4848 [35mhttp[39m:
+[35mPUT update user id: undefined username with abc123[39m
+2022-03-08 15:48:48:4848 [32minfo[39m:
+[32mAdding user abc123 to the database[39m
+2022-03-08 15:49:12:4912 [35mhttp[39m:
+[35mGET all users[39m
+2022-03-08 15:49:12:4912 [32minfo[39m:
+[32mGetting all the users from the database[39m
+2022-03-08 15:52:14:5214 [35mhttp[39m:
+[35mPUT update user id: undefined username with first[39m
+2022-03-08 15:52:14:5214 [32minfo[39m:
+[32mAdding user first to the database[39m
+2022-03-08 15:52:32:5232 [32minfo[39m:
+[32mSuccessfully connected to database[39m
+2022-03-08 15:52:32:5232 [32minfo[39m:
+[32mListening on port: 3000[39m
+2022-03-08 15:52:35:5235 [35mhttp[39m:
+[35mGET all users[39m
+2022-03-08 15:52:35:5235 [32minfo[39m:
+[32mGetting all the users from the database[39m
+2022-03-08 15:53:01:531 [35mhttp[39m:
+[35mPUT update user id: undefined username with first[39m
+2022-03-08 15:53:01:531 [32minfo[39m:
+[32mUpdating user id: undefined username to first[39m
+2022-03-08 15:55:13:5513 [32minfo[39m:
+[32mSuccessfully connected to database[39m
+2022-03-08 15:55:13:5513 [32minfo[39m:
+[32mListening on port: 3000[39m
+2022-03-08 15:55:15:5515 [35mhttp[39m:
+[35mPUT update user id: undefined username with first[39m
+2022-03-08 15:55:15:5515 [32minfo[39m:
+[32mUpdating user id: undefined username to first[39m
+2022-03-08 15:55:23:5523 [35mhttp[39m:
+[35mGET all users[39m
+2022-03-08 15:55:23:5523 [32minfo[39m:
+[32mGetting all the users from the database[39m
+2022-03-08 15:55:49:5549 [35mhttp[39m:
+[35mPUT update user id: undefined username with first[39m
+2022-03-08 15:55:49:5549 [32minfo[39m:
+[32mUpdating user id: undefined username to first[39m
+2022-03-08 15:56:37:5637 [35mhttp[39m:
+[35mPUT update user id: undefined username with first[39m
+2022-03-08 15:56:37:5637 [32minfo[39m:
+[32mUpdating user id: undefined username to first[39m
+2022-03-08 16:01:50:150 [32minfo[39m:
+[32mSuccessfully connected to database[39m
+2022-03-08 16:01:50:150 [32minfo[39m:
+[32mListening on port: 3000[39m
+2022-03-08 16:01:53:153 [35mhttp[39m:
+[35mGET all users[39m
+2022-03-08 16:01:53:153 [32minfo[39m:
+[32mGetting all the users from the database[39m
+2022-03-08 16:01:57:157 [35mhttp[39m:
+[35mPUT update user id: undefined username with first[39m
+2022-03-08 16:01:57:157 [32minfo[39m:
+[32mGetting user NaN from the database[39m
+2022-03-08 16:06:26:626 [32minfo[39m:
+[32mSuccessfully connected to database[39m
+2022-03-08 16:06:26:626 [32minfo[39m:
+[32mListening on port: 3000[39m
+2022-03-08 16:06:29:629 [35mhttp[39m:
+[35mPUT update user id: undefined username with first[39m
+2022-03-08 16:06:29:629 [32minfo[39m:
+[32mGetting user 2 from the database[39m
+2022-03-08 16:06:33:633 [35mhttp[39m:
+[35mPUT update user id: undefined username with first[39m
+2022-03-08 16:06:33:633 [32minfo[39m:
+[32mGetting user 1 from the database[39m
+2022-03-08 16:06:33:633 [32minfo[39m:
+[32mUpdating user id: 1 username to first[39m
+2022-03-08 16:06:37:637 [35mhttp[39m:
+[35mGET all users[39m
+2022-03-08 16:06:37:637 [32minfo[39m:
+[32mGetting all the users from the database[39m
+2022-03-08 16:06:52:652 [35mhttp[39m:
+[35mPUT update user id: undefined username with first[39m
+2022-03-08 16:06:52:652 [32minfo[39m:
+[32mGetting user 26029766 from the database[39m
+2022-03-08 16:07:01:71 [35mhttp[39m:
+[35mPUT update user id: undefined username with undefined[39m
+2022-03-08 16:07:29:729 [35mhttp[39m:
+[35mPUT update user id: undefined username with 6ix 9ine[39m
+2022-03-08 16:07:29:729 [32minfo[39m:
+[32mGetting user 26029769 from the database[39m
+2022-03-08 16:07:29:729 [32minfo[39m:
+[32mUpdating user id: 26029769 username to 6ix 9ine[39m
+2022-03-08 16:07:40:740 [35mhttp[39m:
+[35mGET all users[39m
+2022-03-08 16:07:40:740 [32minfo[39m:
+[32mGetting all the users from the database[39m
+2022-03-08 16:15:48:1548 [32minfo[39m:
+[32mSuccessfully connected to database[39m
+2022-03-08 16:15:48:1548 [32minfo[39m:
+[32mListening on port: 3000[39m
+2022-03-08 16:15:52:1552 [35mhttp[39m:
+[35mPUT update user id: undefined username with 6ix 9ine[39m
+2022-03-08 16:15:52:1552 [32minfo[39m:
+[32mGetting user 26029769 from the database[39m
+2022-03-08 16:15:52:1552 [32minfo[39m:
+[32mUpdating user id: 26029769 username to 6ix 9ine[39m
+2022-03-08 16:16:10:1610 [35mhttp[39m:
+[35mPUT update user id: undefined username with funny number lol[39m
+2022-03-08 16:16:10:1610 [32minfo[39m:
+[32mGetting user 26029769 from the database[39m
+2022-03-08 16:16:10:1610 [32minfo[39m:
+[32mUpdating user id: 26029769 username to funny number lol[39m
+2022-03-08 16:16:37:1637 [35mhttp[39m:
+[35mDELETE user with id: 26029769[39m
+2022-03-08 16:16:37:1637 [32minfo[39m:
+[32mRemoving user id: 26029769 from the database[39m
+2022-03-08 16:16:42:1642 [35mhttp[39m:
+[35mGET all users[39m
+2022-03-08 16:16:42:1642 [32minfo[39m:
+[32mGetting all the users from the database[39m
+2022-03-08 16:16:49:1649 [35mhttp[39m:
+[35mDELETE user with id: 26029769[39m
+2022-03-08 16:16:49:1649 [32minfo[39m:
+[32mRemoving user id: 26029769 from the database[39m
+2022-03-08 16:17:07:177 [35mhttp[39m:
+[35mGET all users[39m
+2022-03-08 16:17:07:177 [32minfo[39m:
+[32mGetting all the users from the database[39m
+2022-03-08 16:17:10:1710 [35mhttp[39m:
+[35mDELETE user with id: 26029769[39m
+2022-03-08 16:17:10:1710 [32minfo[39m:
+[32mRemoving user id: 26029769 from the database[39m
+2022-03-08 16:19:54:1954 [32minfo[39m:
+[32mSuccessfully connected to database[39m
+2022-03-08 16:19:54:1954 [32minfo[39m:
+[32mListening on port: 3000[39m
+2022-03-08 16:19:56:1956 [35mhttp[39m:
+[35mDELETE user with id: 26029769[39m
+2022-03-08 16:19:56:1956 [32minfo[39m:
+[32mGetting user 26029769 from the database[39m
+2022-03-08 16:20:24:2024 [35mhttp[39m:
+[35mPOST create a user with username:[39m
+[35mmj_lol[39m
+2022-03-08 16:20:24:2024 [32minfo[39m:
+[32mAdding user mj_lol to the database[39m
+2022-03-08 16:20:38:2038 [35mhttp[39m:
+[35mDELETE user with id: 26029772[39m
+2022-03-08 16:20:38:2038 [32minfo[39m:
+[32mGetting user 26029772 from the database[39m
+2022-03-08 16:20:38:2038 [32minfo[39m:
+[32mRemoving user id: 26029772 from the database[39m
+2022-03-08 16:22:57:2257 [32minfo[39m:
+[32mSuccessfully connected to database[39m
+2022-03-08 16:22:57:2257 [32minfo[39m:
+[32mListening on port: 3000[39m
+2022-03-08 16:23:03:233 [35mhttp[39m:
+[35mPOST create a user with username:[39m
+[35mmj_lol[39m
+2022-03-08 16:23:03:233 [32minfo[39m:
+[32mAdding user mj_lol to the database[39m
+2022-03-08 16:23:21:2321 [35mhttp[39m:
+[35mPUT update user id: undefined username with cringe[39m
+2022-03-08 16:23:21:2321 [32minfo[39m:
+[32mGetting user 26029773 from the database[39m
+2022-03-08 16:23:21:2321 [32minfo[39m:
+[32mUpdating user id: 26029773 username to cringe[39m
+2022-03-08 16:23:31:2331 [35mhttp[39m:
+[35mDELETE user with id: 26029773[39m
+2022-03-08 16:23:31:2331 [32minfo[39m:
+[32mGetting user 26029773 from the database[39m
+2022-03-08 16:23:31:2331 [32minfo[39m:
+[32mRemoving user id: 26029773 from the database[39m
+2022-03-08 16:23:33:2333 [35mhttp[39m:
+[35mGET all users[39m
+2022-03-08 16:23:33:2333 [32minfo[39m:
+[32mGetting all the users from the database[39m
+2022-03-08 16:26:08:268 [35mhttp[39m:
+[35mPOST create a user with username:[39m
+[35mpostman[39m
+2022-03-08 16:26:08:268 [32minfo[39m:
+[32mAdding user postman to the database[39m
+2022-03-08 16:26:28:2628 [35mhttp[39m:
+[35mGET all users[39m
+2022-03-08 16:26:28:2628 [32minfo[39m:
+[32mGetting all the users from the database[39m
+2022-03-08 16:26:39:2639 [35mhttp[39m:
+[35mGET single user id: 26029774[39m
+2022-03-08 16:26:39:2639 [32minfo[39m:
+[32mGetting user 26029774 from the database[39m
+2022-03-08 16:26:45:2645 [35mhttp[39m:
+[35mPUT update user id: undefined username with updated[39m
+2022-03-08 16:26:45:2645 [32minfo[39m:
+[32mGetting user 26029774 from the database[39m
+2022-03-08 16:26:45:2645 [32minfo[39m:
+[32mUpdating user id: 26029774 username to updated[39m
+2022-03-08 16:27:16:2716 [32minfo[39m:
+[32mSuccessfully connected to database[39m
+2022-03-08 16:27:16:2716 [32minfo[39m:
+[32mListening on port: 3000[39m
+2022-03-08 16:27:24:2724 [35mhttp[39m:
+[35mPUT update user id: undefined username with updated[39m
+2022-03-08 16:27:24:2724 [32minfo[39m:
+[32mGetting user 26029774 from the database[39m
+2022-03-08 16:27:24:2724 [32minfo[39m:
+[32mUpdating user id: 26029774 username to updated[39m
+2022-03-08 16:27:27:2727 [35mhttp[39m:
+[35mDELETE user with id: 26029774[39m
+2022-03-08 16:27:27:2727 [32minfo[39m:
+[32mGetting user 26029774 from the database[39m
+2022-03-08 16:27:27:2727 [32minfo[39m:
+[32mRemoving user id: 26029774 from the database[39m
+2022-03-08 16:31:36:3136 [35mhttp[39m:
+[35mGET single user id: 999999999[39m
+2022-03-08 16:31:36:3136 [32minfo[39m:
+[32mGetting user 999999999 from the database[39m
+2022-03-08 16:32:48:3248 [35mhttp[39m:
+[35mPOST create a user with username:[39m
+[35mundefined[39m
+2022-03-08 16:34:15:3415 [35mhttp[39m:
+[35mPOST create a user with username:[39m
+[35mpostman[39m
+2022-03-08 16:34:15:3415 [32minfo[39m:
+[32mAdding user postman to the database[39m
+2022-03-08 16:34:15:3415 [35mhttp[39m:
+[35mGET all users[39m
+2022-03-08 16:34:15:3415 [32minfo[39m:
+[32mGetting all the users from the database[39m
+2022-03-08 16:34:16:3416 [35mhttp[39m:
+[35mGET single user id: 26029775[39m
+2022-03-08 16:34:16:3416 [32minfo[39m:
+[32mGetting user 26029775 from the database[39m
+2022-03-08 16:34:16:3416 [35mhttp[39m:
+[35mPUT update user id: undefined username with updated[39m
+2022-03-08 16:34:16:3416 [32minfo[39m:
+[32mGetting user 26029775 from the database[39m
+2022-03-08 16:34:16:3416 [32minfo[39m:
+[32mUpdating user id: 26029775 username to updated[39m
+2022-03-08 16:34:16:3416 [35mhttp[39m:
+[35mDELETE user with id: 26029775[39m
+2022-03-08 16:34:16:3416 [32minfo[39m:
+[32mGetting user 26029775 from the database[39m
+2022-03-08 16:34:16:3416 [32minfo[39m:
+[32mRemoving user id: 26029775 from the database[39m
+2022-03-08 16:35:20:3520 [35mhttp[39m:
+[35mPOST create a user with username:[39m
+[35mpostman[39m
+2022-03-08 16:35:20:3520 [32minfo[39m:
+[32mAdding user postman to the database[39m
+2022-03-08 16:35:21:3521 [35mhttp[39m:
+[35mGET all users[39m
+2022-03-08 16:35:21:3521 [32minfo[39m:
+[32mGetting all the users from the database[39m
+2022-03-08 16:35:21:3521 [35mhttp[39m:
+[35mGET single user id: 26029776[39m
+2022-03-08 16:35:21:3521 [32minfo[39m:
+[32mGetting user 26029776 from the database[39m
+2022-03-08 16:35:21:3521 [35mhttp[39m:
+[35mPUT update user id: undefined username with updated[39m
+2022-03-08 16:35:21:3521 [32minfo[39m:
+[32mGetting user 26029776 from the database[39m
+2022-03-08 16:35:21:3521 [32minfo[39m:
+[32mUpdating user id: 26029776 username to updated[39m
+2022-03-08 16:35:21:3521 [35mhttp[39m:
+[35mDELETE user with id: 26029776[39m
+2022-03-08 16:35:21:3521 [32minfo[39m:
+[32mGetting user 26029776 from the database[39m
+2022-03-08 16:35:21:3521 [32minfo[39m:
+[32mRemoving user id: 26029776 from the database[39m
+2022-03-08 16:39:21:3921 [32minfo[39m:
+[32mSuccessfully connected to database[39m
+2022-03-08 16:39:21:3921 [32minfo[39m:
+[32mListening on port: 3000[39m
+2022-03-08 16:40:18:4018 [35mhttp[39m:
+[35mGET single user id: 99999999999[39m
+2022-03-08 16:40:18:4018 [32minfo[39m:
+[32mGetting user 99999999999 from the database[39m
+2022-03-08 16:41:45:4145 [35mhttp[39m:
+[35mGET single user id: 99999999999[39m
+2022-03-08 16:41:45:4145 [32minfo[39m:
+[32mGetting user 99999999999 from the database[39m
+2022-03-08 16:42:43:4243 [35mhttp[39m:
+[35mPOST create a user with username:[39m
+[35mundefined[39m
+2022-03-08 16:42:47:4247 [35mhttp[39m:
+[35mGET single user id: 99999999999[39m
+2022-03-08 16:42:47:4247 [32minfo[39m:
+[32mGetting user 99999999999 from the database[39m
+2022-03-08 17:37:23:3723 [32minfo[39m:
+[32mSuccessfully connected to database[39m
+2022-03-08 17:37:23:3723 [32minfo[39m:
+[32mListening on port: 3000[39m
+2022-03-08 17:37:40:3740 [35mhttp[39m:
+[35mPOST create a user with username:[39m
+[35mpostman[39m
+2022-03-08 17:37:40:3740 [32minfo[39m:
+[32mAdding user postman to the database[39m
+2022-03-08 17:37:40:3740 [35mhttp[39m:
+[35mGET all users[39m
+2022-03-08 17:37:40:3740 [32minfo[39m:
+[32mGetting all the users from the database[39m
+2022-03-08 17:37:40:3740 [35mhttp[39m:
+[35mGET single user id: 26029777[39m
+2022-03-08 17:37:40:3740 [32minfo[39m:
+[32mGetting user 26029777 from the database[39m
+2022-03-08 17:37:41:3741 [35mhttp[39m:
+[35mPUT update user id: undefined username with updated[39m
+2022-03-08 17:37:41:3741 [32minfo[39m:
+[32mGetting user 26029777 from the database[39m
+2022-03-08 17:37:41:3741 [32minfo[39m:
+[32mUpdating user id: 26029777 username to updated[39m
+2022-03-08 17:37:41:3741 [35mhttp[39m:
+[35mDELETE user with id: 26029777[39m
+2022-03-08 17:37:41:3741 [32minfo[39m:
+[32mGetting user 26029777 from the database[39m
+2022-03-08 17:37:41:3741 [32minfo[39m:
+[32mRemoving user id: 26029777 from the database[39m
+2022-03-08 17:37:45:3745 [35mhttp[39m:
+[35mPOST create a user with username:[39m
+[35mpostman[39m
+2022-03-08 17:37:45:3745 [32minfo[39m:
+[32mAdding user postman to the database[39m
+2022-03-08 17:37:45:3745 [35mhttp[39m:
+[35mGET all users[39m
+2022-03-08 17:37:45:3745 [32minfo[39m:
+[32mGetting all the users from the database[39m
+2022-03-08 17:37:45:3745 [35mhttp[39m:
+[35mGET single user id: 26029778[39m
+2022-03-08 17:37:45:3745 [32minfo[39m:
+[32mGetting user 26029778 from the database[39m
+2022-03-08 17:37:45:3745 [35mhttp[39m:
+[35mPUT update user id: undefined username with updated[39m
+2022-03-08 17:37:45:3745 [32minfo[39m:
+[32mGetting user 26029778 from the database[39m
+2022-03-08 17:37:45:3745 [32minfo[39m:
+[32mUpdating user id: 26029778 username to updated[39m
+2022-03-08 17:37:46:3746 [35mhttp[39m:
+[35mDELETE user with id: 26029778[39m
+2022-03-08 17:37:46:3746 [32minfo[39m:
+[32mGetting user 26029778 from the database[39m
+2022-03-08 17:37:46:3746 [32minfo[39m:
+[32mRemoving user id: 26029778 from the database[39m
+2022-03-08 17:37:58:3758 [35mhttp[39m:
+[35mPOST create a user with username:[39m
+[35mpostman[39m
+2022-03-08 17:37:58:3758 [32minfo[39m:
+[32mAdding user postman to the database[39m
+2022-03-08 17:37:58:3758 [35mhttp[39m:
+[35mGET all users[39m
+2022-03-08 17:37:58:3758 [32minfo[39m:
+[32mGetting all the users from the database[39m
+2022-03-08 17:37:58:3758 [35mhttp[39m:
+[35mGET single user id: 26029779[39m
+2022-03-08 17:37:58:3758 [32minfo[39m:
+[32mGetting user 26029779 from the database[39m
+2022-03-08 17:37:58:3758 [35mhttp[39m:
+[35mPUT update user id: undefined username with updated[39m
+2022-03-08 17:37:58:3758 [32minfo[39m:
+[32mGetting user 26029779 from the database[39m
+2022-03-08 17:37:58:3758 [32minfo[39m:
+[32mUpdating user id: 26029779 username to updated[39m
+2022-03-08 17:37:59:3759 [35mhttp[39m:
+[35mDELETE user with id: 26029779[39m
+2022-03-08 17:37:59:3759 [32minfo[39m:
+[32mGetting user 26029779 from the database[39m
+2022-03-08 17:37:59:3759 [32minfo[39m:
+[32mRemoving user id: 26029779 from the database[39m
+2022-03-08 17:37:59:3759 [35mhttp[39m:
+[35mPOST create a conversation with convo_name:[39m
+[35mpostman[39m
+2022-03-08 17:37:59:3759 [32minfo[39m:
+[32mAdding user undefined to the database[39m
+2022-03-08 17:38:40:3840 [35mhttp[39m:
+[35mGET all users[39m
+2022-03-08 17:38:40:3840 [32minfo[39m:
+[32mGetting all the users from the database[39m
+2022-03-08 17:38:48:3848 [35mhttp[39m:
+[35mGET all conversations[39m
+2022-03-08 17:38:48:3848 [32minfo[39m:
+[32mGetting all the users from the database[39m
+2022-03-08 17:38:56:3856 [35mhttp[39m:
+[35mGET single conversation id: 1[39m
+2022-03-08 17:38:56:3856 [32minfo[39m:
+[32mGetting user 1 from the database[39m
+2022-03-08 17:39:31:3931 [35mhttp[39m:
+[35mPOST create a user with username:[39m
+[35mpostman[39m
+2022-03-08 17:39:31:3931 [32minfo[39m:
+[32mAdding user postman to the database[39m
+2022-03-08 17:39:31:3931 [35mhttp[39m:
+[35mGET all users[39m
+2022-03-08 17:39:31:3931 [32minfo[39m:
+[32mGetting all the users from the database[39m
+2022-03-08 17:39:31:3931 [35mhttp[39m:
+[35mGET single user id: 26029780[39m
+2022-03-08 17:39:31:3931 [32minfo[39m:
+[32mGetting user 26029780 from the database[39m
+2022-03-08 17:39:31:3931 [35mhttp[39m:
+[35mPUT update user id: undefined username with updated[39m
+2022-03-08 17:39:31:3931 [32minfo[39m:
+[32mGetting user 26029780 from the database[39m
+2022-03-08 17:39:31:3931 [32minfo[39m:
+[32mUpdating user id: 26029780 username to updated[39m
+2022-03-08 17:39:31:3931 [35mhttp[39m:
+[35mDELETE user with id: 26029780[39m
+2022-03-08 17:39:31:3931 [32minfo[39m:
+[32mGetting user 26029780 from the database[39m
+2022-03-08 17:39:31:3931 [32minfo[39m:
+[32mRemoving user id: 26029780 from the database[39m
+2022-03-08 17:39:31:3931 [35mhttp[39m:
+[35mGET all conversations[39m
+2022-03-08 17:39:31:3931 [32minfo[39m:
+[32mGetting all the users from the database[39m
+2022-03-08 17:39:32:3932 [35mhttp[39m:
+[35mGET single conversation id: 1[39m
+2022-03-08 17:39:32:3932 [32minfo[39m:
+[32mGetting user 1 from the database[39m
+2022-03-08 17:40:05:405 [35mhttp[39m:
+[35mGET single conversation id: 1[39m
+2022-03-08 17:40:05:405 [32minfo[39m:
+[32mGetting user 1 from the database[39m
+2022-03-08 17:40:08:408 [35mhttp[39m:
+[35mGET single conversation id: 1[39m
+2022-03-08 17:40:08:408 [32minfo[39m:
+[32mGetting user 1 from the database[39m
+2022-03-08 17:40:25:4025 [35mhttp[39m:
+[35mGET single conversation id: 1[39m
+2022-03-08 17:40:25:4025 [32minfo[39m:
+[32mGetting user 1 from the database[39m
+2022-03-08 17:41:27:4127 [32minfo[39m:
+[32mSuccessfully connected to database[39m
+2022-03-08 17:41:27:4127 [32minfo[39m:
+[32mListening on port: 3000[39m
+2022-03-08 17:41:28:4128 [35mhttp[39m:
+[35mGET single conversation id: 1[39m
+2022-03-08 17:41:28:4128 [32minfo[39m:
+[32mGetting conversation 1 from the database[39m
+2022-03-08 17:41:32:4132 [35mhttp[39m:
+[35mGET all conversations[39m
+2022-03-08 17:41:32:4132 [32minfo[39m:
+[32mGetting all conversations from the database[39m
+2022-03-08 17:42:47:4247 [35mhttp[39m:
+[35mGET all conversations[39m
+2022-03-08 17:42:47:4247 [32minfo[39m:
+[32mGetting all conversations from the database[39m
+2022-03-08 17:43:03:433 [35mhttp[39m:
+[35mGET single conversation id: 1[39m
+2022-03-08 17:43:03:433 [32minfo[39m:
+[32mGetting conversation 1 from the database[39m
+2022-03-08 17:50:22:5022 [32minfo[39m:
+[32mSuccessfully connected to database[39m
+2022-03-08 17:50:22:5022 [32minfo[39m:
+[32mListening on port: 3000[39m
+2022-03-08 17:50:26:5026 [35mhttp[39m:
+[35mGET single conversation id: 1[39m
+2022-03-08 17:50:26:5026 [32minfo[39m:
+[32mGetting conversation 1 from the database[39m
+2022-03-08 17:50:30:5030 [35mhttp[39m:
+[35mGET single conversation id: 2[39m
+2022-03-08 17:50:30:5030 [32minfo[39m:
+[32mGetting conversation 2 from the database[39m
+2022-03-08 17:50:34:5034 [35mhttp[39m:
+[35mGET single conversation id: 99999999[39m
+2022-03-08 17:50:34:5034 [32minfo[39m:
+[32mGetting conversation 99999999 from the database[39m
+2022-03-08 17:55:08:558 [35mhttp[39m:
+[35mGET single conversation id: 2[39m
+2022-03-08 17:55:08:558 [32minfo[39m:
+[32mGetting conversation 2 from the database[39m
