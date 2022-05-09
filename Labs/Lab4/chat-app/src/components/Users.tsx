@@ -28,6 +28,7 @@ const Users = () => {
         axios.delete('http://localhost:3000/api/users/' + user.user_id)
             .then((response) => {
                 navigate('/users')
+                window.location.reload()
             }, (error) => {
                 setErrorFlag(true)
                 setErrorMessage(error.toString())
