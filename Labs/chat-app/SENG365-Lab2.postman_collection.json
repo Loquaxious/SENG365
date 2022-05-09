@@ -1,0 +1,662 @@
+{
+	"info": {
+		"_postman_id": "79a98d95-2aba-4cc6-ae36-450330d4da09",
+		"name": "SENG365-Lab2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "post_user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(201); // tests status is 201\r",
+							"});\r",
+							"pm.test(\"Body test\", function () {\r",
+							"    pm.response.to.be.withBody; // tests data is returned in body\r",
+							"    pm.response.to.be.json; // tests datatype is json\r",
+							"})\r",
+							"const jsonData = pm.response.json()\r",
+							"pm.test(\"Object test\", function () {\r",
+							"    pm.expect(jsonData).to.be.an('object'); // tests data is an object\r",
+							"    pm.expect(jsonData).not.to.be.empty; // tests data is not empty\r",
+							"    pm.expect(jsonData.user_id).to.be.a('number'); // tests data has user_id field with number\r",
+							"    if (typeof jsonData.user_id !== undefined) {\r",
+							"        // sets global variable 'user_id' if it is returned \r",
+							"        pm.collectionVariables.set(\"test_id\", jsonData.user_id); \r",
+							"    }\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"postman\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/users",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users"
+					]
+				},
+				"description": "Request to post a user"
+			},
+			"response": []
+		},
+		{
+			"name": "get_users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200); // tests status is 200\r",
+							"})\r",
+							"pm.test(\"Body test\", function () {\r",
+							"    pm.response.to.be.withBody; // tests data is returned in body\r",
+							"    pm.response.to.be.json // tests datatype is json\r",
+							"})\r",
+							"const jsonData = pm.response.json()\r",
+							"pm.test(\"Array test\", function () {\r",
+							"    pm.expect(jsonData).to.be.an(\"array\")\r",
+							"    pm.expect(jsonData).not.to.be.empty\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/users",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users"
+					]
+				},
+				"description": "Request getting all users"
+			},
+			"response": []
+		},
+		{
+			"name": "get_user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200); // tests status is 200\r",
+							"})\r",
+							"pm.test(\"Body test\", function () {\r",
+							"    pm.response.to.be.withBody; // tests data is returned in body\r",
+							"    pm.response.to.be.json // tests datatype is json\r",
+							"})\r",
+							"const jsonData = pm.response.json()\r",
+							"pm.test(\"Object test\", function () {\r",
+							"    pm.expect(jsonData).to.be.an('object')\r",
+							"    pm.expect(jsonData).not.to.be.empty\r",
+							"    pm.expect(jsonData.user_id).to.be.a('number');\r",
+							"    pm.expect(jsonData.username).to.be.a('string');\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/users/{{test_id}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"{{test_id}}"
+					]
+				},
+				"description": "Request to get a user"
+			},
+			"response": []
+		},
+		{
+			"name": "put_user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200); // tests status is 200\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"updated\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/users/{{test_id}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"{{test_id}}"
+					]
+				},
+				"description": "Request to update a user"
+			},
+			"response": []
+		},
+		{
+			"name": "delete_user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200); // tests status is 200\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/users/{{test_id}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"{{test_id}}"
+					]
+				},
+				"description": "Request to delete user"
+			},
+			"response": []
+		},
+		{
+			"name": "post_conversations",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(201); // tests status is 201\r",
+							"})\r",
+							"pm.test(\"Body test\", function () {\r",
+							"    pm.response.to.be.withBody; // tests data is returned in body\r",
+							"    pm.response.to.be.json; // tests datatype is json\r",
+							"})\r",
+							"const jsonData = pm.response.json()\r",
+							"pm.test(\"Object test\", function () {\r",
+							"    pm.expect(jsonData).to.be.an('object');\r",
+							"    pm.expect(jsonData).not.to.be.empty;\r",
+							"    pm.expect(jsonData.convo_id).to.be.a('number');\r",
+							"    const convo_id = jsonData.convo_id;\r",
+							"    if (typeof convo_id !== undefined) {\r",
+							"        pm.collectionVariables.set(\"convo_id\", jsonData.convo_id);\r",
+							"    }\r",
+							"})\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"convo_name\": \"postman\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/conversations",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"conversations"
+					]
+				},
+				"description": "Request to post a conversation"
+			},
+			"response": []
+		},
+		{
+			"name": "get_conversations",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200); // tests status is 200\r",
+							"})\r",
+							"pm.test(\"Body test\", function () {\r",
+							"    pm.response.to.be.withBody; // tests data is returned in body\r",
+							"    pm.response.to.be.json // tests datatype is json\r",
+							"})\r",
+							"const jsonData = pm.response.json()\r",
+							"pm.test(\"Array test\", function () {\r",
+							"    pm.expect(jsonData).to.be.an(\"array\")\r",
+							"    pm.expect(jsonData).not.to.be.empty\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/conversations",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"conversations"
+					]
+				},
+				"description": "Request to get all conversations"
+			},
+			"response": []
+		},
+		{
+			"name": "get_conversation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200); // tests status is 200\r",
+							"})\r",
+							"pm.test(\"Body test\", function () {\r",
+							"    pm.response.to.be.withBody; // tests data is returned in body\r",
+							"    pm.response.to.be.json // tests datatype is json\r",
+							"})\r",
+							"const jsonData = pm.response.json()\r",
+							"pm.test(\"Object test\", function () {\r",
+							"    pm.expect(jsonData).to.be.an(\"object\")\r",
+							"    pm.expect(jsonData).not.to.be.empty\r",
+							"    pm.expect(jsonData.convo_id).to.be.a('number');\r",
+							"    pm.expect(jsonData.convo_name).to.be.a('string');\r",
+							"    pm.expect(jsonData.created_on).to.be.a('string');\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/conversations/{{convo_id}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"conversations",
+						"{{convo_id}}"
+					]
+				},
+				"description": "Request to get a conversation"
+			},
+			"response": []
+		},
+		{
+			"name": "put_conversation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200); // tests status is 201\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"convo_name\": \"updated\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/conversations/{{convo_id}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"conversations",
+						"{{convo_id}}"
+					]
+				},
+				"description": "Request to update a conversation"
+			},
+			"response": []
+		},
+		{
+			"name": "post_message",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(201); // tests status is 201\r",
+							"})\r",
+							"pm.test(\"Body test\", function () {\r",
+							"    pm.response.to.be.withBody; // tests data is returned in body\r",
+							"    pm.response.to.be.json; // tests datatype is json\r",
+							"})\r",
+							"const jsonData = pm.response.json()\r",
+							"pm.test(\"Object test\", function () {\r",
+							"    pm.expect(jsonData).to.be.an('object');\r",
+							"    pm.expect(jsonData).not.to.be.empty;\r",
+							"    pm.expect(jsonData.message_id).to.be.a('number');\r",
+							"    const message_id = jsonData.message_id;\r",
+							"    if (typeof convo_id !== undefined) {\r",
+							"        pm.collectionVariables.set(\"message_id\", jsonData.message_id);\r",
+							"    }\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_id\": {{user_id}},\r\n    \"message\": \"A test message from postman\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/conversations/{{convo_id}}/messages",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"conversations",
+						"{{convo_id}}",
+						"messages"
+					]
+				},
+				"description": "Request to post a message"
+			},
+			"response": []
+		},
+		{
+			"name": "get_messages",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200); // tests status is 200\r",
+							"});\r",
+							"pm.test(\"Body test\", function () {\r",
+							"    pm.response.to.be.withBody; // tests data is returned in body\r",
+							"    pm.response.to.be.json; // tests datatype is json\r",
+							"});\r",
+							"const jsonData = pm.response.json()\r",
+							"pm.test(\"Array test\", function () {\r",
+							"    pm.expect(jsonData).to.be.an(\"array\");\r",
+							"    pm.expect(jsonData).not.to.be.empty;\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/conversations/{{convo_id}}/messages",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"conversations",
+						"{{convo_id}}",
+						"messages"
+					]
+				},
+				"description": "Request to get all conversations"
+			},
+			"response": []
+		},
+		{
+			"name": "get_message",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200); // tests status is 200\r",
+							"})\r",
+							"pm.test(\"Body test\", function () {\r",
+							"    pm.response.to.be.withBody; // tests data is returned in body\r",
+							"    pm.response.to.be.json // tests datatype is json\r",
+							"})\r",
+							"const jsonData = pm.response.json()\r",
+							"pm.test(\"Object test\", function () {\r",
+							"    pm.expect(jsonData).to.be.an(\"object\")\r",
+							"    pm.expect(jsonData).not.to.be.empty\r",
+							"    pm.expect(jsonData.message_id).to.be.a('number');\r",
+							"    pm.expect(jsonData.convo_id).to.be.a('number');\r",
+							"    pm.expect(jsonData.user_id).to.be.a('number');\r",
+							"    pm.expect(jsonData.sent_time).to.be.a('string');\r",
+							"    pm.expect(jsonData.message).to.be.a('string');\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/conversations/{{convo_id}}/messages/{{message_id}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"conversations",
+						"{{convo_id}}",
+						"messages",
+						"{{message_id}}"
+					]
+				},
+				"description": "Request to get a conversation"
+			},
+			"response": []
+		},
+		{
+			"name": "delete_conversation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200); // tests status is 200\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/conversations/{{convo_id}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"conversations",
+						"{{convo_id}}"
+					]
+				},
+				"description": "Request to delete a conversation"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"setTimeout(function(){}, [100])"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "user_id",
+			"value": "1"
+		},
+		{
+			"key": "convo_id",
+			"value": "1"
+		},
+		{
+			"key": "message_id",
+			"value": "1"
+		},
+		{
+			"key": "message",
+			"value": "A test message from postman"
+		},
+		{
+			"key": "test_id",
+			"value": 24
+		},
+		{
+			"key": "test_convo_id",
+			"value": 9
+		},
+		{
+			"key": "test_message_id",
+			"value": ""
+		}
+	]
+}
