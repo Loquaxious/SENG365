@@ -5,9 +5,9 @@ import Users from './components/Users';
 import User from "./components/User";
 import NotFound from "./components/NotFound";
 import Conversations from "./components/Conversations"
-import Conversation from "./components/Conversation"
 import Messages from "./components/Messages"
 import Message from "./components/Message"
+import UserList from "./components/UserList";
 
 function App() {
     return (
@@ -16,6 +16,7 @@ function App() {
                 <div>
                     <Routes>
                         <Route path="/users" element={<Users/>}/>
+                        <Route path="/users-props" element={<UserList/>}/>
                         <Route path="/users/:id" element={<User/>}/>
                         <Route path={"/conversations"} element={<Conversations/>}/>
                         <Route path={"/conversations/:id"} element={<Messages/>}/>
