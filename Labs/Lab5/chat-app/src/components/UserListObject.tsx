@@ -20,14 +20,14 @@ const UserListObject = (props: IUserProps) => {
     const editUserFromStore = useUserStore(state => state.editUser)
 
     const deleteUser = () => {
-        axios.delete('http://localhost:8080/api/users/' + user.user_id)
+        axios.delete('http://localhost:3000/api/users/' + user.user_id)
             .then(() => {
                 deleteUserFromStore(user)
             })
     }
 
     const editUser = () => {
-        axios.put('http://localhost:8080/api/users/' + user.user_id, {"username": username})
+        axios.put('http://localhost:3000/api/users/' + user.user_id, {"username": username})
             .then(() => {
                 editUserFromStore(user, username)
             })
@@ -79,14 +79,14 @@ const UserListObject = (props: IUserProps) => {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={() => setOpenDeleteDialog(false)}>Cancel</Button>
-                    <Button variant="outlined" color="error" onClick={() => {deleteUser()}} autoFocus>
+                    <Button variant="outlined" color="error" onClick={deleteUser} autoFocus>
                         Delete
                     </Button>
                 </DialogActions>
             </Dialog>
             <Dialog
                 open={openEditDialog}
-                onClose={() => setOpenEditDialog(false)}
+                onClose={() => {setOpenEditDialog(false); setUsername("")}}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description">
                 <DialogTitle id="alert-dialog-title">
@@ -97,8 +97,8 @@ const UserListObject = (props: IUserProps) => {
                                value={username} onChange={(event) => setUsername(event.target.value)} autoFocus/>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={() => setOpenEditDialog(false)}>Cancel</Button>
-                    <Button variant="outlined" color="success" onClick={() => {editUser()}}>
+                    <Button onClick={() => {setOpenEditDialog(false); setUsername("")}}>Cancel</Button>
+                    <Button variant="outlined" color="success" onClick={editUser}>
                         Edit
                     </Button>
                 </DialogActions>

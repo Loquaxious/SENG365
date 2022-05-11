@@ -9581,3 +9581,98 @@
 2022-05-11 16:08:04:84 [32minfo[39m: [32mGetting all users from the database[39m
 2022-05-11 16:11:52:1152 [35mhttp[39m: [35mGET all users[39m
 2022-05-11 16:11:52:1152 [32minfo[39m: [32mGetting all users from the database[39m
+2022-05-11 20:45:24:4524 [32minfo[39m: [32mSuccessfully connected to database[39m
+2022-05-11 20:45:24:4524 [32minfo[39m: [32mListening on port: 3000[39m
+2022-05-11 20:47:06:476 [35mhttp[39m: [35mGET all users[39m
+2022-05-11 20:47:06:476 [32minfo[39m: [32mGetting all users from the database[39m
+2022-05-11 20:51:33:5133 [35mhttp[39m: [35mGET all users[39m
+2022-05-11 20:51:33:5133 [32minfo[39m: [32mGetting all users from the database[39m
+2022-05-11 21:04:33:433 [35mhttp[39m: [35mGET all users[39m
+2022-05-11 21:04:33:433 [32minfo[39m: [32mGetting all users from the database[39m
+2022-05-11 21:10:13:1013 [35mhttp[39m: [35mGET all users[39m
+2022-05-11 21:10:13:1013 [32minfo[39m: [32mGetting all users from the database[39m
+2022-05-11 21:12:04:124 [35mhttp[39m: [35mGET all users[39m
+2022-05-11 21:12:04:124 [32minfo[39m: [32mGetting all users from the database[39m
+2022-05-11 21:12:11:1211 [35mhttp[39m: [35mGET all users[39m
+2022-05-11 21:12:11:1211 [32minfo[39m: [32mGetting all users from the database[39m
+2022-05-11 21:13:28:1328 [35mhttp[39m: [35mPATCH single user id: 5[39m
+2022-05-11 21:13:28:1328 [32minfo[39m: [32mGetting user 5 from the database[39m
+2022-05-11 21:13:28:1328 [32minfo[39m: [32mUpdating user 5 to 5[39m
+2022-05-11 21:13:39:1339 [35mhttp[39m: [35mPATCH single user id: 5[39m
+2022-05-11 21:13:39:1339 [32minfo[39m: [32mGetting user 5 from the database[39m
+2022-05-11 21:13:39:1339 [32minfo[39m: [32mUpdating user 5 to 5iver[39m
+2022-05-11 21:13:41:1341 [35mhttp[39m: [35mDELETE single user id: 6[39m
+2022-05-11 21:13:41:1341 [32minfo[39m: [32mGetting user 6 from the database[39m
+2022-05-11 21:13:41:1341 [32minfo[39m: [32mDeleting user 6[39m
+2022-05-11 21:13:44:1344 [35mhttp[39m: [35mGET all users[39m
+2022-05-11 21:13:44:1344 [32minfo[39m: [32mGetting all users from the database[39m
+2022-05-11 21:13:57:1357 [35mhttp[39m: [35mGET all users[39m
+2022-05-11 21:13:57:1357 [32minfo[39m: [32mGetting all users from the database[39m
+2022-05-11 21:16:10:1610 [35mhttp[39m: [35mPATCH single user id: 5[39m
+2022-05-11 21:16:10:1610 [32minfo[39m: [32mGetting user 5 from the database[39m
+2022-05-11 21:16:10:1610 [32minfo[39m: [32mUpdating user 5 to five[39m
+2022-05-11 21:16:13:1613 [35mhttp[39m: [35mGET all users[39m
+2022-05-11 21:16:13:1613 [32minfo[39m: [32mGetting all users from the database[39m
+2022-05-11 21:19:45:1945 [35mhttp[39m: [35mGET all users[39m
+2022-05-11 21:19:45:1945 [32minfo[39m: [32mGetting all users from the database[39m
+2022-05-11 21:21:10:2110 [35mhttp[39m: [35mPATCH single user id: 5[39m
+2022-05-11 21:21:10:2110 [32minfo[39m: [32mGetting user 5 from the database[39m
+2022-05-11 21:21:10:2110 [32minfo[39m: [32mUpdating user 5 to 5ive[39m
+2022-05-11 21:21:12:2112 [35mhttp[39m: [35mPATCH single user id: 5[39m
+2022-05-11 21:21:12:2112 [32minfo[39m: [32mGetting user 5 from the database[39m
+2022-05-11 21:21:12:2112 [32minfo[39m: [32mUpdating user 5 to 5ive[39m
+2022-05-11 21:21:12:2112 [35mhttp[39m: [35mPATCH single user id: 5[39m
+2022-05-11 21:21:12:2112 [32minfo[39m: [32mGetting user 5 from the database[39m
+2022-05-11 21:21:12:2112 [32minfo[39m: [32mUpdating user 5 to 5ive[39m
+2022-05-11 21:21:18:2118 [35mhttp[39m: [35mPATCH single user id: 5[39m
+2022-05-11 21:21:18:2118 [32minfo[39m: [32mGetting user 5 from the database[39m
+2022-05-11 21:21:18:2118 [32minfo[39m: [32mUpdating user 5 to 5ive[39m
+2022-05-11 21:21:18:2118 [35mhttp[39m: [35mPATCH single user id: 5[39m
+2022-05-11 21:21:18:2118 [32minfo[39m: [32mGetting user 5 from the database[39m
+2022-05-11 21:21:18:2118 [32minfo[39m: [32mUpdating user 5 to 5ive[39m
+2022-05-11 21:21:18:2118 [35mhttp[39m: [35mPATCH single user id: 5[39m
+2022-05-11 21:21:18:2118 [32minfo[39m: [32mGetting user 5 from the database[39m
+2022-05-11 21:21:18:2118 [32minfo[39m: [32mUpdating user 5 to 5ive[39m
+2022-05-11 21:21:19:2119 [35mhttp[39m: [35mPATCH single user id: 5[39m
+2022-05-11 21:21:19:2119 [32minfo[39m: [32mGetting user 5 from the database[39m
+2022-05-11 21:21:19:2119 [32minfo[39m: [32mUpdating user 5 to 5ive[39m
+2022-05-11 21:21:23:2123 [35mhttp[39m: [35mPATCH single user id: 5[39m
+2022-05-11 21:21:23:2123 [32minfo[39m: [32mGetting user 5 from the database[39m
+2022-05-11 21:21:23:2123 [32minfo[39m: [32mUpdating user 5 to hello[39m
+2022-05-11 21:21:23:2123 [35mhttp[39m: [35mPATCH single user id: 5[39m
+2022-05-11 21:21:23:2123 [32minfo[39m: [32mGetting user 5 from the database[39m
+2022-05-11 21:21:23:2123 [32minfo[39m: [32mUpdating user 5 to hello[39m
+2022-05-11 21:22:05:225 [35mhttp[39m: [35mPATCH single user id: 5[39m
+2022-05-11 21:22:05:225 [32minfo[39m: [32mGetting user 5 from the database[39m
+2022-05-11 21:22:05:225 [32minfo[39m: [32mUpdating user 5 to 5ive[39m
+2022-05-11 21:22:06:226 [35mhttp[39m: [35mPATCH single user id: 5[39m
+2022-05-11 21:22:06:226 [32minfo[39m: [32mGetting user 5 from the database[39m
+2022-05-11 21:22:06:226 [32minfo[39m: [32mUpdating user 5 to 5ive[39m
+2022-05-11 21:22:06:226 [35mhttp[39m: [35mPATCH single user id: 5[39m
+2022-05-11 21:22:06:226 [32minfo[39m: [32mGetting user 5 from the database[39m
+2022-05-11 21:22:06:226 [32minfo[39m: [32mUpdating user 5 to 5ive[39m
+2022-05-11 21:22:06:226 [35mhttp[39m: [35mPATCH single user id: 5[39m
+2022-05-11 21:22:06:226 [32minfo[39m: [32mGetting user 5 from the database[39m
+2022-05-11 21:22:06:226 [32minfo[39m: [32mUpdating user 5 to 5ive[39m
+2022-05-11 21:22:06:226 [35mhttp[39m: [35mPATCH single user id: 5[39m
+2022-05-11 21:22:06:226 [32minfo[39m: [32mGetting user 5 from the database[39m
+2022-05-11 21:22:06:226 [32minfo[39m: [32mUpdating user 5 to 5ive[39m
+2022-05-11 21:22:06:226 [35mhttp[39m: [35mPATCH single user id: 5[39m
+2022-05-11 21:22:06:226 [32minfo[39m: [32mGetting user 5 from the database[39m
+2022-05-11 21:22:06:226 [32minfo[39m: [32mUpdating user 5 to 5ive[39m
+2022-05-11 21:22:07:227 [35mhttp[39m: [35mPATCH single user id: 5[39m
+2022-05-11 21:22:07:227 [32minfo[39m: [32mGetting user 5 from the database[39m
+2022-05-11 21:22:07:227 [32minfo[39m: [32mUpdating user 5 to 5ive[39m
+2022-05-11 21:22:12:2212 [35mhttp[39m: [35mDELETE single user id: 5[39m
+2022-05-11 21:22:12:2212 [32minfo[39m: [32mGetting user 5 from the database[39m
+2022-05-11 21:22:12:2212 [32minfo[39m: [32mDeleting user 5[39m
+2022-05-11 21:22:13:2213 [35mhttp[39m: [35mDELETE single user id: 5[39m
+2022-05-11 21:22:13:2213 [32minfo[39m: [32mGetting user 5 from the database[39m
+2022-05-11 21:22:13:2213 [35mhttp[39m: [35mDELETE single user id: 5[39m
+2022-05-11 21:22:13:2213 [32minfo[39m: [32mGetting user 5 from the database[39m
+2022-05-11 21:22:49:2249 [35mhttp[39m: [35mGET all users[39m
+2022-05-11 21:22:49:2249 [32minfo[39m: [32mGetting all users from the database[39m
+2022-05-11 21:22:51:2251 [35mhttp[39m: [35mGET all users[39m
+2022-05-11 21:22:51:2251 [32minfo[39m: [32mGetting all users from the database[39m
+2022-05-11 21:24:08:248 [35mhttp[39m: [35mGET all users[39m
+2022-05-11 21:24:08:248 [32minfo[39m: [32mGetting all users from the database[39m

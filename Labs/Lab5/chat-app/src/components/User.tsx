@@ -69,10 +69,60 @@ const User = () => {
                         data-bs-target="#editUserModal">
                     Edit
                 </button>
+                <div className="modal fade" id="editUserModal" tabIndex={-1} role="dialog"
+                     aria-labelledby="editUserModalLabel" aria-hidden="true">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title"
+                                    id="editUserModalLabel">Edit User</h5>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                </button>
+                            </div>
+                            <div className="modal-body">
+                                Update Username:
+                                <form onSubmit={editUser}>
+                                    <input type={"text"} value={username} onChange={(event) =>  setUsername(event.target.value)}/>
+                                    <input type={"submit"} value={"Submit"}/>
+                                </form>
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <button type="button" className="btn btn-primary" data-bs-toggle="modal"
                         data-bs-target="#deleteUserModal">
                     Delete
                 </button>
+                <div className="modal fade" id="deleteUserModal" tabIndex={-1} role="dialog"
+                     aria-labelledby="deleteUserModalLabel" aria-hidden="true">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title"
+                                    id="deleteUserModalLabel">Delete User</h5>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                </button>
+                            </div>
+                            <div className="modal-body">
+                                Are you sure that you want to delete this user?
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
+                                    Close
+                                </button>
+                                <button type="button" className="btn btn-primary" data-bs-dismiss="modal"
+                                        onClick={() => deleteUser(user)}>
+                                    Delete User
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }
