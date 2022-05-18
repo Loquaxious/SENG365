@@ -29,9 +29,15 @@ const register = async (req: Request, res: Response): Promise<void> => {
         return;
     } catch (err) {
         Logger.error(err)
-        res.statusMessage = "Internal Server Error";
-        res.status(500).send();
-        return;
+        if (err.message && err.message.includes('Duplicate entry')) {
+          res.statusMessage = 'Bad Request: email already in use';
+          res.status(403).send();
+        } else {
+          res.statusMessage = "Internal Server Error";
+          res.status(500).send();
+          return;
+        }
+
     }
 }
 
