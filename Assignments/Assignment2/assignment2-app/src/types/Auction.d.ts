@@ -38,9 +38,9 @@ type Auction = {
     /**
      * Date and time auction ends
      */
-    end_date: string,
+    endDate: string,
     /**
      * The filename of the image for the auction
      */
-    image_filename: string,
+    imageFilename: string,
 }

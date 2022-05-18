@@ -28,7 +28,8 @@ import {
 } from "@mui/material";
 import AuctionObject from "./Auction";
 import SearchIcon from '@mui/icons-material/Search';
-// TODO Get is working, Follow UserList in lab 5
+import FilterListIcon from '@mui/icons-material/FilterList';
+
 const Auctions = () => {
     const auctions = useAuctionStore(state => state.auctions)
     const setAuctions = useAuctionStore(state => state.setAuctions)
@@ -36,9 +37,26 @@ const Auctions = () => {
     const [searchQuery, setSearchQuery] = React.useState("")
     const [errorFlag, setErrorFlag] = React.useState(false)
     const [errorMessage, setErrorMessage] = React.useState("")
+    const [filterQuery, setFilterQuery] = React.useState("")
+    const [openFilterDialog, setOpenFilterDialog] = React.useState(false)
+
+    const handleFilterDialogOpen = () => {
+        setOpenFilterDialog(true)
+    }
+
+    const handleFilterDialogClose = () => {
+        setFilterQuery("")
+        setOpenFilterDialog(false)
+    }
+
+    const handleKeyDownSearch = (event: any) => {
+        if (event.key ==='Enter') {
+            queryAuctions()
+        }
+    }
 
     const queryAuctions = () => {
-        axios.get('http://localhost:4941/api/v1/auctions?q=' + searchQuery)
+        axios.get('http://localhost:4941/api/v1/auctions?q=' + searchQuery + filterQuery)
             .then((response) => {
                 setAuctions(response.data.auctions)
                 setCount(response.data.count)
@@ -65,7 +83,7 @@ const Auctions = () => {
     }, [setAuctions])
 
     const auction_rows = () => auctions.map((auction: Auction) =>
-    <AuctionObject key={auction.title} auction={auction}/>)
+    <AuctionObject key={auction.auctionId + auction.title} auction={auction}/>)
 
     const card: CSS.Properties = {
         padding: "10px",
@@ -81,8 +99,9 @@ const Auctions = () => {
                    id={"search-bar"}
                    value={searchQuery}
                    onChange={(event) => setSearchQuery(event.target.value)}
-                   InputProps={{startAdornment: <InputAdornment position={"start"}><SearchIcon/></InputAdornment>}}/>
+                   InputProps={{startAdornment: <InputAdornment position={"start"}><SearchIcon/></InputAdornment>}} onKeyDown={(event) => handleKeyDownSearch(event)}/>
             <Button variant={"outlined"} onClick={() => queryAuctions()}>Search</Button>
+            <Button variant={"outlined"} onClick={() => setOpenFilterDialog(true)}><FilterListIcon/> Filter</Button>
             <Paper elevation={3} style={card}>
                 <div style={{display:"inline-block", maxWidth:"965px", minWidth:"320"}}>
                     {errorFlag?
@@ -94,6 +113,24 @@ const Auctions = () => {
                     {auction_rows()}
                 </div>
             </Paper>
+            <Dialog
+                open={openFilterDialog}
+                onClose={handleFilterDialogClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description">
+                <DialogTitle id="alert-dialog-title">
+                    {"Filter Auctions"}
+                </DialogTitle>
+                <DialogContent>
+
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleFilterDialogClose}>Cancel</Button>
+                    <Button variant="outlined" color="success" onClick={() => searchQuery} autoFocus>
+                        Filter
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </div>
 
     )
