@@ -34,13 +34,13 @@ type Auction = {
     /**
      * The highest current bid on the auction
      */
-    highestBid: number
+    highestBid: number,
     /**
      * Date and time auction ends
      */
     endDate: string,
     /**
-     * The filename of the image for the auction
+     * Description of the Auction
      */
-    imageFilename: string,
+    description: string
 }

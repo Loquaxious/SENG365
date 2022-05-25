@@ -19,7 +19,7 @@ const useStore = create<AuctionState>((set) => ({
     removeAuction: (auction: Auction) => set((state) => {
         return {auctions: state.auctions.filter(a => a.auctionId !==
                 auction.auctionId)}
-    })
+    }),
 }))
 
 export const useAuctionStore = useStore;
