@@ -24,8 +24,8 @@ const Auction = () => {
     const [categories, setCategories] = React.useState<Category[]>([])
 
     const similarAuctionRows = () => {
-        let similarCategoryAuctions: Auction
-        let similarSellerAuctions: Auction
+        let similarCategoryAuctions: Auction[]
+        let similarSellerAuctions: Auction[]
         axios.get(`http://localhost:4941/api/v1/auctions/?categoryIds=${auction.categoryId}`)
             .then((res) => {
                 setErrorFlag(false)
@@ -45,8 +45,12 @@ const Auction = () => {
                 setErrorMessage(error.toString())
             })
 
-        return auctions.map((auction: Auction) =>
-            <AuctionObject key={auction.auctionId} auction={auction}/>)
+        // @ts-ignore
+        if (similarSellerAuctions && similarCategoryAuctions) {
+           const auctions = similarSellerAuctions.concat(similarSellerAuctions)
+            return auctions.map((auction: Auction) =>
+                <AuctionObject key={auction.auctionId} auction={auction}/>)
+        }
     }
 
     interface HeadCell {
