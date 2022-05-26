@@ -27,6 +27,7 @@ import {
 import AuctionObject from "./AuctionObject";
 import SearchIcon from '@mui/icons-material/Search';
 import FilterListIcon from '@mui/icons-material/FilterList';
+import Navbar from "./Navbar";
 
 const Auctions = () => {
     const auctions = useAuctionStore(state => state.auctions)
@@ -213,6 +214,7 @@ const Auctions = () => {
 
     return (
         <div>
+            {Navbar()}
             <h1 style={{textAlign: "left", paddingLeft: "20px"}}>Auctions</h1>
             <TextField
                    id={"search-bar"}

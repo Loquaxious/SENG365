@@ -14,6 +14,7 @@ import {
     Typography
 } from "@mui/material";
 import AuctionObject from "./AuctionObject";
+import Navbar from "./Navbar";
 
 const Auction = () => {
     const {id} = useParams()
@@ -22,35 +23,54 @@ const Auction = () => {
     const [errorFlag, setErrorFlag] = React.useState(false)
     const [errorMessage, setErrorMessage] = React.useState("")
     const [categories, setCategories] = React.useState<Category[]>([])
+    const [similarCategoryAuctions, setSimilarCategoryAuctions] = React.useState<Array<Auction>>([])
+    const [similarSellerAuctions, setSimilarSellerAuctions] = React.useState<Array<Auction>>([])
+
+    const getSameCategoryAuctions = (categoryId: number) => {
+        axios.get(`http://localhost:4941/api/v1/auctions/?categoryIds=${categoryId}`)
+            .then((res) => {
+                setErrorFlag(false)
+                setErrorMessage("")
+                setSimilarCategoryAuctions(res.data.auctions)
+            }, (error) => {
+                setErrorFlag(true)
+                setErrorMessage(error.toString())
+            })
+    }
+    const getSameSellerAuctions = (sellerId: number) => {
+        axios.get(`http://localhost:4941/api/v1/auctions/?sellerId=${sellerId}`)
+            .then((res) => {
+                setErrorFlag(false)
+                setErrorMessage("")
+                setSimilarSellerAuctions(res.data.auctions)
+            }, (error) => {
+                setErrorFlag(true)
+                setErrorMessage(error.toString())
+            })
+    }
 
     const similarAuctionRows = () => {
-        let similarCategoryAuctions: Auction[]
-        let similarSellerAuctions: Auction[]
-        axios.get(`http://localhost:4941/api/v1/auctions/?categoryIds=${auction.categoryId}`)
-            .then((res) => {
-                setErrorFlag(false)
-                setErrorMessage("")
-                similarCategoryAuctions = res.data.auctions
-            }, (error) => {
-                setErrorFlag(true)
-                setErrorMessage(error.toString())
-            })
-        axios.get(`http://localhost:4941/api/v1/auctions/?sellerId=${auction.sellerId}`)
-            .then((res) => {
-                setErrorFlag(false)
-                setErrorMessage("")
-                similarSellerAuctions = res.data.auctions
-            }, (error) => {
-                setErrorFlag(true)
-                setErrorMessage(error.toString())
-            })
+        const filteredSimilarSellerAuctions = similarSellerAuctions.filter(similarAuction => similarAuction.auctionId !== auction.auctionId)
+        const filteredSimilarCategoryAuctions = similarCategoryAuctions.filter(similarAuction => similarAuction.auctionId !== auction.auctionId)
+        console.log(similarSellerAuctions)
+        console.log(similarCategoryAuctions)
 
-        // @ts-ignore
-        if (similarSellerAuctions && similarCategoryAuctions) {
-           const auctions = similarSellerAuctions.concat(similarSellerAuctions)
-            return auctions.map((auction: Auction) =>
-                <AuctionObject key={auction.auctionId} auction={auction}/>)
+        let similarAuctions: Array<Auction> = []
+        for (let i=0; i<filteredSimilarSellerAuctions.length; i++) {
+            if (!filteredSimilarCategoryAuctions.includes(filteredSimilarSellerAuctions[i])) {
+                similarAuctions.push(filteredSimilarSellerAuctions[i])
+            }
         }
+
+        for (let j=0; j<filteredSimilarCategoryAuctions.length; j++) {
+            if (!filteredSimilarSellerAuctions.includes(filteredSimilarCategoryAuctions[j])) {
+                similarAuctions.push(filteredSimilarCategoryAuctions[j])
+            }
+        }
+
+
+        return similarAuctions.map((auction: Auction) =>
+            <AuctionObject key={auction.auctionId} auction={auction}/>)
     }
 
     interface HeadCell {
@@ -96,8 +116,6 @@ const Auction = () => {
       )
     }
 
-
-
     React.useEffect(() => {
         const getAuction = () => {
             axios.get(`http://localhost:4941/api/v1/auctions/${id}`)
@@ -105,7 +123,8 @@ const Auction = () => {
                     setErrorFlag(false)
                     setErrorMessage("")
                     setAuction(response.data)
-                    console.log(response.data)
+                    getSameSellerAuctions(response.data.sellerId)
+                    getSameCategoryAuctions(response.data.categoryId)
                 }, (error) => {
                     setErrorFlag(true)
                     setErrorMessage(error.toString())
@@ -141,6 +160,7 @@ const Auction = () => {
 
     return (
         <div>
+            {Navbar()}
             {errorFlag?
                 <Alert severity="error">
                     <AlertTitle>Error</AlertTitle>
