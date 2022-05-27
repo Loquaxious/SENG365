@@ -35,19 +35,23 @@ const Register = () => {
     });
     const [errorFlag, setErrorFlag] = React.useState(false);
     const [errorMessage, setErrorMessage] = React.useState("");
-    const [userId, setUserId] = React.useState(-1);
-    const [auth, setAuth] = React.useState("");
     const navigate = useNavigate();
 
-    const loginUser = () => {
-        axios.post('http://localhost:4941/api/v1/users/login', {email: values.email, password: values.password})
+    const loginUser = (email: string, password: string) => {
+        axios.post('http://localhost:4941/api/v1/users/login', {email: email, password: password})
             .then((res) => {
                 setErrorFlag(false)
                 setErrorMessage("")
-                setAuth(res.data.token)
+                localStorage.setItem('token', res.data.token)
             }, (error) => {
                 setErrorFlag(true)
-                setErrorMessage(error.toString() + ". If Error Code 400 then system had a problem automatically logging in after registering")
+                if (error.toString().includes("400")) {
+                    setErrorMessage("BAD Request: Invalid data input into fields")
+                } else if (error.toString().includes("500")) {
+                    setErrorMessage("ERROR: Something when wrong with the server... Oops our bad")
+                } else {
+                    setErrorMessage(error.toString())
+                }
             })
     }
 
@@ -62,11 +66,21 @@ const Register = () => {
         }).then((res) => {
             setErrorFlag(false)
             setErrorMessage("")
-            setUserId(res.data.userId)
-            loginUser()
+            localStorage.setItem('user', res.data.userId)
+            // @ts-ignore
+            loginUser(data.get('email'), data.get('password'))
+            navigate('/auctions/')
         }, (error) => {
             setErrorFlag(true)
-            setErrorMessage(error.toString() + ". If Error Code 403 then email is already registered, try a different one.")
+            if (error.toString().includes("400")) {
+                setErrorMessage("BAD Request: Invalid data input into fields")
+            } else if (error.toString().includes("403")) {
+                setErrorMessage("FORBIDDEN: Email is already registered")
+            } else if (error.toString().includes("500")) {
+                setErrorMessage("ERROR: Something when wrong with the server... Oops our bad")
+            } else {
+                setErrorMessage(error.toString())
+            }
         })
     };
 

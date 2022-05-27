@@ -7,7 +7,16 @@ interface AuctionState {
     removeAuction: (auction: Auction) => void;
 }
 
-const useStore = create<AuctionState>((set) => ({
+interface AuthenticationState {
+    token: string;
+    user: number;
+    setToken: (token: string) => void;
+    setUser: (userId: number) => void;
+    removeToken: () => void;
+    removeUser: () => void;
+}
+
+const useStoreAuctions = create<AuctionState>((set) => ({
     auctions: [],
     setAuctions: (auctions: Array<Auction>) => set(() => {
         return {auctions: auctions}
@@ -22,4 +31,4 @@ const useStore = create<AuctionState>((set) => ({
     }),
 }))
 
-export const useAuctionStore = useStore;
+export const useAuctionStore = useStoreAuctions;

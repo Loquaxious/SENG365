@@ -6,12 +6,12 @@ import {
     AlertTitle,
     Card,
     CardContent,
-    CardMedia,
     Table, TableBody,
     TableCell,
     TableContainer, TableHead,
     TableRow,
-    Typography
+    Typography,
+    Grid
 } from "@mui/material";
 import AuctionObject from "./AuctionObject";
 import Navbar from "./Navbar";
@@ -98,16 +98,15 @@ const Auction = () => {
       return bids.map((row: Bid) =>
           <TableRow hover tabIndex={-1} key={row.bidderId.toString() + row.amount.toString()}>
               <TableCell align={"right"}>
-                  <Card>
-                      <CardMedia
-                          component="img"
-                          height="50"
-                          width="50"
-                          sx={{objectFit:"scale-down"}}
-                          image={`http://localhost:4941/api/v1/users/${row.bidderId}/image`}
-                          alt="Auction hero image"
+                  <Grid alignItems={"center"}>
+                      <img src={`http://localhost:4941/api/v1/users/${row.bidderId}/image`}
+                           onError={({currentTarget}) => {
+                               currentTarget.onerror = null;
+                               currentTarget.src=  "https://via.placeholder.com/150.jpg?User Avatar"}}
+                           height={"50px"}
+                           width={"50px"}
                       />
-                  </Card>
+                  </Grid>
               </TableCell>
               <TableCell align={"right"}>{`${row.firstName} ${row.lastName}`}</TableCell>
               <TableCell align={"right"}>{`$${row.amount}`}</TableCell>
@@ -169,13 +168,12 @@ const Auction = () => {
                 :""}
             <h1>{auction.title}</h1>
             <Card style={{display: "flex", maxWidth: "1000px", minWidth: "320px", alignSelf: "center"}}>
-                <CardMedia
-                    component="img"
-                    height="500"
-                    width="500"
-                    sx={{objectFit:"scale-down"}}
-                    image={`http://localhost:4941/api/v1/auctions/${id}/image`}
-                    alt="Auction hero image"
+                <img src={`http://localhost:4941/api/v1/auctions/${id}/image`}
+                     onError={({currentTarget}) => {
+                         currentTarget.onerror = null;
+                         currentTarget.src=  "https://via.placeholder.com/500.jpg?No Auction Image"}}
+                     height={"100%"}
+                     width={"100%"}
                 />
             </Card>
             <Card variant={"outlined"}>
@@ -206,13 +204,12 @@ const Auction = () => {
                 </Card>
                 <Card>
                     <Typography variant={"h6"}>Seller:</Typography>
-                    <CardMedia
-                        component="img"
-                        height="40"
-                        width="40"
-                        sx={{objectFit:"scale-down"}}
-                        image={`http://localhost:4941/api/v1/users/${auction.sellerId}/image`}
-                        alt="Seller hero image"
+                    <img src={`http://localhost:4941/api/v1/users/${auction.sellerId}/image`}
+                         onError={({currentTarget}) => {
+                             currentTarget.onerror = null;
+                             currentTarget.src=  "https://via.placeholder.com/40.jpg?Auction Seller"}}
+                         height={"40px"}
+                         width={"40px"}
                     />
                     <CardContent>
                         <Typography style={{display:"inline"}}>{auction.sellerFirstName + " " + auction.sellerLastName}</Typography>

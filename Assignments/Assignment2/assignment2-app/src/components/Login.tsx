@@ -31,8 +31,6 @@ const Login = () => {
     });
     const [errorFlag, setErrorFlag] = React.useState(false);
     const [errorMessage, setErrorMessage] = React.useState("");
-    const [userId, setUserId] = React.useState(-1);
-    const [auth, setAuth] = React.useState("");
     const navigate = useNavigate();
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -44,11 +42,18 @@ const Login = () => {
         }).then((res) => {
             setErrorFlag(false)
             setErrorMessage("")
-            setUserId(res.data.userId)
-            setAuth(res.data.token)
+            localStorage.setItem('user', res.data.userId)
+            localStorage.setItem('token', res.data.token)
+            navigate('/auctions/')
         }, (error) => {
             setErrorFlag(true)
-            setErrorMessage(error.toString() + ". If error is 400, then incorrect login details")
+            if (error.toString().includes("400")) {
+                setErrorMessage("BAD Request: Invalid data input into fields")
+            } else if (error.toString().includes("500")) {
+                setErrorMessage("ERROR: Something when wrong with the server... Oops our bad")
+            } else {
+                setErrorMessage(error.toString())
+            }
         })
     };
 

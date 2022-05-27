@@ -38,13 +38,12 @@ const AuctionObject = (props: IAuctionProps) => {
     return (
         <Card sx={auctionCardStyles} onClick={() => navigate('/auctions/' + auction.auctionId)}>
             <CardActionArea>
-                <CardMedia
-                    component="img"
-                    height="300"
-                    width="300"
-                    sx={{objectFit:"cover"}}
-                    image={`http://localhost:4941/api/v1/auctions/${auction.auctionId}/image`}
-                    alt="Auction hero image"
+                <img src={`http://localhost:4941/api/v1/auctions/${auction.auctionId}/image`}
+                     onError={({currentTarget}) => {
+                         currentTarget.onerror = null;
+                         currentTarget.src=  "https://via.placeholder.com/300.jpg?Auction Image"}}
+                     height={"300px"}
+                     width={"300px"}
                 />
                 <CardContent>
                     <Typography variant="h5">
@@ -64,13 +63,12 @@ const AuctionObject = (props: IAuctionProps) => {
                     </Typography>
                     <Card >
                         <CardActionArea>
-                            <CardMedia
-                                component="img"
-                                height="40"
-                                width="40"
-                                sx={{objectFit:"scale-down"}}
-                                image={`http://localhost:4941/api/v1/users/${auction.sellerId}/image`}
-                                alt="Seller hero image"
+                            <img src={`http://localhost:4941/api/v1/users/${auction.sellerId}/image`}
+                                 onError={({currentTarget}) => {
+                                     currentTarget.onerror = null;
+                                     currentTarget.src=  "https://via.placeholder.com/40.jpg?Auction Seller"}}
+                                 height={"40px"}
+                                 width={"40px"}
                             />
                             <CardContent>
                                 <Typography style={{display:"inline"}}>{auction.sellerFirstName + " " + auction.sellerLastName}</Typography>
