@@ -36,3 +36,5 @@
     transform: rotate(360deg);
   }
 }
+
+@import "https://cdn.syncfusion.com/ej2/material.css";

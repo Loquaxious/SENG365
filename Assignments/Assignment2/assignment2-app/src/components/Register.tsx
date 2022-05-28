@@ -16,6 +16,7 @@ import IconButton from "@mui/material/IconButton";
 import axios from "axios";
 import Navbar from "./Navbar";
 import {useNavigate} from "react-router-dom";
+import ReactImageUploading from "react-images-uploading";
 
 interface State {
     firstName: string;
@@ -33,24 +34,46 @@ const Register = () => {
         email: "",
         showPassword: false,
     });
+    const [image, setImage] = React.useState<File|null>();
     const [errorFlag, setErrorFlag] = React.useState(false);
     const [errorMessage, setErrorMessage] = React.useState("");
     const navigate = useNavigate();
 
-    const loginUser = (email: string, password: string) => {
-        axios.post('http://localhost:4941/api/v1/users/login', {email: email, password: password})
+    const loginUser = (email: FormDataEntryValue | null, password: FormDataEntryValue | null) => {
+        if (email && password) {
+            axios.post('http://localhost:4941/api/v1/users/login', {email: email, password: password})
+                .then((res) => {
+                    setErrorFlag(false)
+                    setErrorMessage("")
+                    localStorage.setItem('token', res.data.token)
+                }, (error) => {
+                    setErrorFlag(true)
+                    if (error.toString().includes("400")) {
+                        setErrorMessage("BAD Request: Invalid data input into fields")
+                    } else if (error.toString().includes("500")) {
+                        setErrorMessage("ERROR: Something when wrong with the server... Oops our bad")
+                    } else {
+                        setErrorMessage(error.toString())
+                    }
+                })
+        } else {
+            setErrorFlag(true)
+            setErrorMessage("ERROR: Logging in User after register. Email or password is null")
+        }
+
+    }
+
+    const uploadImage = (userId: number) => {
+        axios.put(`http://localhost:4941/api/v1/users/${userId}/image`, image, {
+            // @ts-ignore
+            headers: {'X-Authorization': authToken, 'Content-Type': image['type']}})
             .then((res) => {
-                setErrorFlag(false)
-                setErrorMessage("")
-                localStorage.setItem('token', res.data.token)
             }, (error) => {
                 setErrorFlag(true)
-                if (error.toString().includes("400")) {
-                    setErrorMessage("BAD Request: Invalid data input into fields")
-                } else if (error.toString().includes("500")) {
-                    setErrorMessage("ERROR: Something when wrong with the server... Oops our bad")
+                if (error.toString().includes('404')) {
+                    setErrorMessage("ERROR: User not found when uploading image")
                 } else {
-                    setErrorMessage(error.toString())
+                    setErrorMessage("ERROR: When uploading image: " + errorMessage.toString())
                 }
             })
     }
@@ -67,7 +90,9 @@ const Register = () => {
             setErrorFlag(false)
             setErrorMessage("")
             localStorage.setItem('user', res.data.userId)
-            // @ts-ignore
+            if (image) {
+                uploadImage(res.data.userId)
+            }
             loginUser(data.get('email'), data.get('password'))
             navigate('/auctions/')
         }, (error) => {
@@ -188,18 +213,19 @@ const Register = () => {
                             />
                             {values.password.length >= 6? "" : <Typography variant={"caption"} color={"red"}>Password must be longer than 6 characters</Typography>}
                         </Grid>
-                        {/*<Grid xs={12} >*/}
-                        {/*    <Button*/}
-                        {/*        variant="contained"*/}
-                        {/*        component="label"*/}
-                        {/*    >*/}
-                        {/*        Upload File*/}
-                        {/*        <input*/}
-                        {/*            type="file"*/}
-                        {/*            hidden*/}
-                        {/*        />*/}
-                        {/*    </Button>*/}
-                        {/*</Grid>*/}
+                        <Grid xs={12} >
+                            <Button
+                                variant="contained"
+                                component="label"
+                            >
+                                <input
+                                    type="file"
+                                    accept={"image/gif|image/jpeg|image/png"}
+                                    // @ts-ignore
+                                    onChange={(event => setImage(event.target.files[0]))}
+                                />
+                            </Button>
+                        </Grid>
                     </Grid>
                     <Button
                         type="submit"

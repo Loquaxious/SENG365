@@ -11,14 +11,10 @@ import {
 import Navbar from "./Navbar";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
-import IconButton from "@mui/material/IconButton";
-import {Visibility, VisibilityOff} from "@mui/icons-material";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
-import {symlinkSync} from "fs";
-
 
 interface EditState {
     firstName: string;
@@ -29,12 +25,14 @@ interface EditState {
 }
 
 const User = () => {
-    const {id} = useParams()
-    const userId = localStorage.getItem('user')
-    const authToken = localStorage.getItem('token')
-    const [user, setUser] = React.useState<User>({firstName:"", lastName:"", email:""})
-    const [errorFlag, setErrorFlag] = React.useState(false)
-    const [errorMessage, setErrorMessage] = React.useState("")
+    const {id} = useParams();
+    const userId = localStorage.getItem('user');
+    const authToken = localStorage.getItem('token');
+    const [user, setUser] = React.useState<User>({firstName:"", lastName:"", email:""});
+    const [errorFlag, setErrorFlag] = React.useState(false);
+    const [errorMessage, setErrorMessage] = React.useState("");
+    const [currentPassword, setCurrentPassword] = React.useState("");
+    const [image, setImage] = React.useState<File | null>()
     const [values, setValues] = React.useState<EditState>({
         firstName: "",
         lastName: "",
@@ -42,7 +40,6 @@ const User = () => {
         email: "",
         showPassword: false,
     });
-    const [currentPassword, setCurrentPassword] = React.useState("")
 
     const prepareEditData = (firstName: string, lastName: string, email: string, password: string, currentPassword: string) => {
       console.log(currentPassword);
@@ -71,6 +68,45 @@ const User = () => {
       return resultDict
     }
 
+    const deleteImage = () => {
+        axios.delete(`http://localhost:4941/api/v1/users/${id}/image`, {
+            // @ts-ignore
+            headers: {'X-Authorization': authToken}})
+            .then(res => {
+                setErrorFlag(false)
+                setErrorMessage("")
+            }, error => {
+                setErrorFlag(true)
+                if (error.toString().includes(401)) {
+                    setErrorMessage('ERROR: Invalid authorisation token')
+                } else if (error.toString().includes('403')) {
+                    setErrorMessage("FORBIDDEN: Invalid authorization token")
+                } else if (error.toString().includes('404')) {
+                    setErrorMessage("ERROR: No image or user found")
+                } else if (error.toString().includes('500')) {
+                    setErrorMessage("ERROR: Something when wrong with the server... Oops our bad")
+                } else {
+                    setErrorMessage(error.toString())
+                }
+            })
+    }
+
+    const uploadImage = () => {
+        // @ts-ignore
+        console.log(image['type'])
+        axios.put(`http://localhost:4941/api/v1/users/${id}/image`, image, {
+            // @ts-ignore
+            headers: {'X-Authorization': authToken, 'Content-Type': image['type']}})
+            .then((res) => {
+            }, (error) => {
+                setErrorFlag(true)
+                if (error.toString().includes('404')) {
+                    setErrorMessage("ERROR: User not found when uploading image")
+                } else {
+                    setErrorMessage("ERROR: When uploading image: " + errorMessage.toString())
+                }
+            })
+    }
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -84,6 +120,9 @@ const User = () => {
         }).then((res) => {
             setErrorFlag(false)
             setErrorMessage("")
+            if (image) {
+                uploadImage()
+            }
 
         }, (error) => {
             setErrorFlag(true)
@@ -239,18 +278,24 @@ const User = () => {
                                                 {currentPassword.length !== 0? "": <Typography variant={"caption"} color={"red"}>You must enter your current password to change your password</Typography>}
                                             </Grid>
                                             : ""}
-                                        {/*<Grid xs={12} >*/}
-                                        {/*    <Button*/}
-                                        {/*        variant="contained"*/}
-                                        {/*        component="label"*/}
-                                        {/*    >*/}
-                                        {/*        Upload File*/}
-                                        {/*        <input*/}
-                                        {/*            type="file"*/}
-                                        {/*            hidden*/}
-                                        {/*        />*/}
-                                        {/*    </Button>*/}
-                                        {/*</Grid>*/}
+                                        <Grid xs={12} >
+                                            <Button
+                                                variant="contained"
+                                                component="label"
+                                            >Upload new Image
+                                                <input
+                                                    type="file"
+                                                    accept={"image/gif|image/jpeg|image/png"}
+                                                    // @ts-ignore
+                                                    onChange={(event => setImage(event.target.files[0]))}
+                                                />
+                                            </Button>
+                                            <Button
+                                                variant={"contained"}
+                                                component={'label'}
+                                                onClick={deleteImage}
+                                                >Delete Current Image</Button>
+                                        </Grid>
                                     </Grid>
                                     <Button
                                         type="submit"
