@@ -26,7 +26,7 @@ const Navbar = () => {
     };
 
     const handleClose = () => {
-
+        setAnchorEl(null);
     };
 
     const handleLogoutClick = () => {
@@ -39,6 +39,11 @@ const Navbar = () => {
     const handleProfileClick = () => {
         setAnchorEl(null);
         navigate(`/user/${userId}`)
+    }
+
+    const handleMyAuctionsClick = () => {
+        setAnchorEl(null);
+        navigate(`/user/${userId}/auctions`)
     }
 
     return (
@@ -78,6 +83,7 @@ const Navbar = () => {
                                     onClose={handleClose}
                                 >
                                     <MenuItem onClick={handleProfileClick}>Profile</MenuItem>
+                                    <MenuItem onClick={handleMyAuctionsClick}>My Auctions</MenuItem>
                                     <MenuItem onClick={handleLogoutClick}>Logout</MenuItem>
                                 </Menu>
                             </div>

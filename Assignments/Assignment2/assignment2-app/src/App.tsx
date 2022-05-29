@@ -8,6 +8,7 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import User from "./components/User";
 import RegisterAuction from "./components/RegisterAuction";
+import UserAuctions from "./components/UserAuctions";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
                 <Route path={"/auctions"} element={<Auctions/>}/>
                 <Route path={"/login/"} element={<Login/>}/>
                 <Route path={"/register/"} element={<Register/>}/>
+                <Route path={"/user/:id/auctions"} element={<UserAuctions/>}/>
                 <Route path={"/user/:id"}  element={<User/>}/>
                 <Route path="*" element={<NotFound/>}/>
             </Routes>

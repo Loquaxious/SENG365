@@ -27,7 +27,7 @@ import {
 import AuctionObject from "./AuctionObject";
 import SearchIcon from '@mui/icons-material/Search';
 import FilterListIcon from '@mui/icons-material/FilterList';
-import AuctionsNavBar from "./AuctionsNavBar";
+import AuctionsNavBar from "./AuctionsNavbar";
 
 const Auctions = () => {
     const auctions = useAuctionStore(state => state.auctions)

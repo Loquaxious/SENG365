@@ -30,12 +30,13 @@ const AuctionsNavbar = () => {
         navigate('/login/')
     }
 
+
     const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
 
     const handleClose = () => {
-
+        setAnchorEl(null);
     };
 
     const handleLogoutClick = () => {
@@ -48,6 +49,11 @@ const AuctionsNavbar = () => {
     const handleProfileClick = () => {
         setAnchorEl(null);
         navigate(`/user/${userId}`)
+    }
+
+    const handleMyAuctionsClick = () => {
+        setAnchorEl(null);
+        navigate(`/user/${userId}/auctions`)
     }
 
 
@@ -94,6 +100,7 @@ const AuctionsNavbar = () => {
                                 onClose={handleClose}
                             >
                                 <MenuItem onClick={handleProfileClick}>Profile</MenuItem>
+                                <MenuItem onClick={handleMyAuctionsClick}>My Auctions</MenuItem>
                                 <MenuItem onClick={handleLogoutClick}>Logout</MenuItem>
                             </Menu>
                         </div>

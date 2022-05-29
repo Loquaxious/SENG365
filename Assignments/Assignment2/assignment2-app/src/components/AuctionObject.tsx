@@ -41,7 +41,7 @@ const AuctionObject = (props: IAuctionProps) => {
                 <img src={`http://localhost:4941/api/v1/auctions/${auction.auctionId}/image`}
                      onError={({currentTarget}) => {
                          currentTarget.onerror = null;
-                         currentTarget.src=  "https://via.placeholder.com/300.jpg?Auction Image"}}
+                         currentTarget.src=  "https://via.placeholder.com/300.jpg?text=Default+Auction+Image"}}
                      height={"300px"}
                      width={"300px"}
                 />
@@ -66,7 +66,7 @@ const AuctionObject = (props: IAuctionProps) => {
                             <img src={`http://localhost:4941/api/v1/users/${auction.sellerId}/image`}
                                  onError={({currentTarget}) => {
                                      currentTarget.onerror = null;
-                                     currentTarget.src=  "https://via.placeholder.com/40.jpg?Auction Seller"}}
+                                     currentTarget.src=  "https://via.placeholder.com/40.jpg?text=Default+Auction+Seller+Image"}}
                                  height={"40px"}
                                  width={"40px"}
                             />

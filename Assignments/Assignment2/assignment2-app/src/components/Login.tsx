@@ -48,7 +48,7 @@ const Login = () => {
         }, (error) => {
             setErrorFlag(true)
             if (error.toString().includes("400")) {
-                setErrorMessage("BAD Request: Invalid data input into fields")
+                setErrorMessage("BAD REQUEST: Invalid login details")
             } else if (error.toString().includes("500")) {
                 setErrorMessage("ERROR: Something when wrong with the server... Oops our bad")
             } else {

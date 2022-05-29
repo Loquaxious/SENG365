@@ -42,7 +42,6 @@ const User = () => {
     });
 
     const prepareEditData = (firstName: string, lastName: string, email: string, password: string, currentPassword: string) => {
-      console.log(currentPassword);
       const resultDict = {};
       const editDict = {
           firstName: firstName,
@@ -51,7 +50,6 @@ const User = () => {
           password: password,
           currentPassword: currentPassword
       };
-      console.log(editDict)
 
       for (let key in editDict) {
           // @ts-ignore
@@ -172,7 +170,7 @@ const User = () => {
 
     return (
         <div>
-            {authToken && id == userId?
+            {authToken && id === userId?
                 <div>
                     {Navbar()}
                     {errorFlag?
