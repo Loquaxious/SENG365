@@ -9,6 +9,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+import HomeIcon from '@mui/icons-material/Home';
 import {useNavigate} from "react-router-dom";
 
 const Navbar = () => {
@@ -52,6 +53,13 @@ const Navbar = () => {
             </FormGroup>
             <AppBar position="static">
                 <Toolbar>
+                    <IconButton
+                        size={"large"}
+                        color={"inherit"}
+                        onClick={() => navigate('/auctions')}
+                    >
+                        <HomeIcon/>
+                    </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         Me Trade
                     </Typography>

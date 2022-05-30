@@ -1,11 +1,11 @@
 import React from "react";
 import {
     Alert, AlertTitle,
-    Button, Checkbox, Dialog, DialogActions, DialogContent, DialogTitle,
+    Button, Card, Checkbox, Dialog, DialogActions, DialogContent, DialogTitle,
     FormControl, FormControlLabel,
     FormLabel,
     InputLabel, ListItemText, MenuItem,
-    OutlinedInput, Pagination, Paper, Radio, RadioGroup, Select,
+    OutlinedInput, Pagination, Paper, Radio, RadioGroup, Select, Typography,
 } from "@mui/material";
 import axios from "axios";
 import AuctionObject from "./AuctionObject";
@@ -72,8 +72,11 @@ const UserAuctions = () => {
         <div>
             {AuctionsNavBar()}
             <h1 style={{textAlign: "left", paddingLeft: "20px"}}>Your Auctions</h1>
-            <Paper elevation={3} style={card}>
-                {errorFlag? "" : `Displaying all ${biddingCount + sellingCount} auctions you are involved in`}
+            <Paper elevation={3} style={card} >
+                {errorFlag? "" :
+                    <Card>
+                        {`Displaying ${biddingCount + sellingCount}  auction(s) you are involved in`}
+                    </Card>}
                 <div style={{display:"inline-block", maxWidth:"1920px", minWidth:"320"}}>
                     {errorFlag?
                         <Alert severity="error">

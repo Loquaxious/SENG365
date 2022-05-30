@@ -4,8 +4,8 @@ import {useNavigate, useParams} from "react-router-dom";
 import {
     Alert,
     AlertTitle,
-    Card,
-    InputAdornment, Link, OutlinedInput,
+    Card, CardMedia,
+    InputAdornment, Link, OutlinedInput, Snackbar,
     Typography
 } from "@mui/material";
 import Navbar from "./Navbar";
@@ -32,7 +32,17 @@ const User = () => {
     const [errorFlag, setErrorFlag] = React.useState(false);
     const [errorMessage, setErrorMessage] = React.useState("");
     const [currentPassword, setCurrentPassword] = React.useState("");
-    const [image, setImage] = React.useState<File | null>()
+    const [image, setImage] = React.useState<File | null>();
+    const [userImageErrorFlag, setUserImageErrorFlag] = React.useState(false)
+    const [snackOpen, setSnackOpen] = React.useState(false)
+    const [snackMessage, setSnackMessage] = React.useState("")
+    const handleSnackClose = (event?: React.SyntheticEvent | Event,
+                              reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setSnackOpen(false);
+    };
     const [values, setValues] = React.useState<EditState>({
         firstName: "",
         lastName: "",
@@ -62,7 +72,6 @@ const User = () => {
           }
 
       }
-      console.log(resultDict);
       return resultDict
     }
 
@@ -73,9 +82,12 @@ const User = () => {
             .then(res => {
                 setErrorFlag(false)
                 setErrorMessage("")
+                setSnackMessage("Successfully deleted your avatar image")
+                setSnackOpen(true)
+                getUserImage()
             }, error => {
                 setErrorFlag(true)
-                if (error.toString().includes(401)) {
+                if (error.toString().includes('401')) {
                     setErrorMessage('ERROR: Invalid authorisation token')
                 } else if (error.toString().includes('403')) {
                     setErrorMessage("FORBIDDEN: Invalid authorization token")
@@ -96,6 +108,10 @@ const User = () => {
             // @ts-ignore
             headers: {'X-Authorization': authToken, 'Content-Type': image['type']}})
             .then((res) => {
+                setSnackMessage("New image successfully changed")
+                setSnackOpen(true)
+                setImage(null)
+                getUserImage()
             }, (error) => {
                 setErrorFlag(true)
                 if (error.toString().includes('404')) {
@@ -121,7 +137,9 @@ const User = () => {
             if (image) {
                 uploadImage()
             }
-
+            setSnackMessage("User details successfully changed")
+            setSnackOpen(true)
+            getUser()
         }, (error) => {
             setErrorFlag(true)
             if (error.toString().includes('400')) {
@@ -143,29 +161,41 @@ const User = () => {
             setValues({ ...values, [prop]: event.target.value });
         };
 
+
+    const getUserImage = () => {
+        axios.get(`http://localhost:4941/api/v1/users/${id}/image`)
+            .then(res => {
+                setUserImageErrorFlag(false)
+            }, (error) => {
+                setUserImageErrorFlag(true)
+            })
+    }
+
+    const getUser = () => {
+        axios.get(`http://localhost:4941/api/v1/users/${id}`, {
+            // @ts-ignore
+            headers: {'X-Authorization': authToken}
+        }).then((response) => {
+            setErrorFlag(false)
+            setErrorMessage("")
+            setUser(response.data)
+        }, (error) => {
+            setErrorFlag(true)
+            if (error.toString().includes("403")) {
+                setErrorMessage("FORBIDDEN: Invalid authorisation token for this user")
+            } else if (error.toString().includes("404")) {
+                setErrorMessage("ERROR: User not found")
+            } else if (error.toString().includes("500")) {
+                setErrorMessage("ERROR: Something when wrong with the server... Oops our bad")
+            } else {
+                setErrorMessage(error.toString())
+            }
+        })
+    }
+
     React.useEffect(() => {
-        const getUser = () => {
-            axios.get(`http://localhost:4941/api/v1/users/${id}`, {
-                // @ts-ignore
-                headers: {'X-Authorization': authToken}
-            }).then((response) => {
-                    setErrorFlag(false)
-                    setErrorMessage("")
-                    setUser(response.data)
-                }, (error) => {
-                    setErrorFlag(true)
-                    if (error.toString().includes("403")) {
-                        setErrorMessage("FORBIDDEN: Invalid authorisation token for this user")
-                    } else if (error.toString().includes("404")) {
-                        setErrorMessage("ERROR: User not found")
-                    } else if (error.toString().includes("500")) {
-                        setErrorMessage("ERROR: Something when wrong with the server... Oops our bad")
-                    } else {
-                        setErrorMessage(error.toString())
-                    }
-                })
-        }
         getUser()
+        getUserImage()
     }, [id])
 
     return (
@@ -180,15 +210,29 @@ const User = () => {
                         </Alert>
                         :""}
                     <h1>{user.firstName + " " + user.lastName}</h1>
-                    <Card style={{display: "flex", maxWidth: "1000px", minWidth: "320px", alignSelf: "center"}}>
-                        <img src={`http://localhost:4941/api/v1/users/${id}/image`}
-                             onError={({currentTarget}) => {
-                                 currentTarget.onerror = null;
-                                 currentTarget.src=  "https://via.placeholder.com/500.png?text=User+Avatar"}}
-                             height={500}
-                             width={500}
-                        />
-                    </Card>
+                    <Grid container spacing={2} alignItems={"center"}>
+                        <Grid item xs={12}>
+                            <Card style={{display: "inline-flex", maxWidth: "960px", minWidth: "320px",}}>
+                                {userImageErrorFlag?
+                                    <CardMedia
+                                        component={"img"}
+                                        height={500}
+                                        width={500}
+                                        sx={{objectFit: "cover"}}
+                                        image={"https://via.placeholder.com/500.png?text=No+User+Avatar"}
+                                        alt={"User avatar image"}
+                                    /> :
+                                    <CardMedia
+                                        component={"img"}
+                                        height={500}
+                                        width={500}
+                                        sx={{objectFit: "cover"}}
+                                        image={`http://localhost:4941/api/v1/users/${id}/image`}
+                                        alt={"User avatar image"}
+                                    />}
+                            </Card>
+                        </Grid>
+                    </Grid>
                     <Card variant={"outlined"}>
                         <Typography variant={'h5'}>User Details</Typography>
                         <Card>
@@ -210,7 +254,6 @@ const User = () => {
                             <CssBaseline />
                             <Box
                                 sx={{
-                                    marginTop: 8,
                                     display: 'flex',
                                     flexDirection: 'column',
                                     alignItems: 'center',
@@ -244,7 +287,11 @@ const User = () => {
                                                 id="email"
                                                 label="Email Address"
                                                 name="email"
+                                                onChange={handleChange('email')}
                                             />
+                                            {values.email.length === 0 || values.email.match("@")?"":
+                                                <Typography variant={"caption"} color={"red"}>Email must include a "@"</Typography>
+                                            }
                                         </Grid>
                                         <Grid item xs={12}>
                                             <TextField
@@ -276,23 +323,36 @@ const User = () => {
                                                 {currentPassword.length !== 0? "": <Typography variant={"caption"} color={"red"}>You must enter your current password to change your password</Typography>}
                                             </Grid>
                                             : ""}
-                                        <Grid xs={12} >
+                                        <Grid item xs={12} sm={6}>
                                             <Button
                                                 variant="contained"
                                                 component="label"
+                                                disabled={image?true:false}
                                             >Upload new Image
                                                 <input
                                                     type="file"
+                                                    hidden
                                                     accept={"image/gif|image/jpeg|image/png"}
-                                                    // @ts-ignore
-                                                    onChange={(event => setImage(event.target.files[0]))}
+
+                                                    onChange={(event => {
+                                                        // @ts-ignore
+                                                        setImage(event.target.files[0])
+                                                        // @ts-ignore
+                                                        setSnackMessage(`Image: ${event.target.files[0].name} uploaded`)
+                                                        setSnackOpen(true)})}
                                                 />
                                             </Button>
+                                            {image?<Typography variant={"caption"} color={"grey"}>Cannot upload another image</Typography>:""}
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
                                             <Button
                                                 variant={"contained"}
+                                                color={"error"}
                                                 component={'label'}
+                                                disabled={userImageErrorFlag}
                                                 onClick={deleteImage}
                                                 >Delete Current Image</Button>
+                                            {userImageErrorFlag?<Typography variant={"caption"} color={"grey"}>You do not have an image</Typography>:""}
                                         </Grid>
                                     </Grid>
                                     <Button
@@ -300,7 +360,9 @@ const User = () => {
                                         fullWidth
                                         variant="contained"
                                         sx={{ mt: 3, mb: 2 }}
-                                        disabled={values.password.length === 0 || (values.password.length >= 6 && currentPassword.length !== 0)? false : true}
+                                        disabled={(values.email.length !== 0 && !values.email.match("@")) ||
+                                        (values.password.length !== 0 && ((values.password.length <= 6 || currentPassword.length === 0)))
+                                         ? true : false}
                                     >
                                         Update Details
                                     </Button>
@@ -313,6 +375,17 @@ const User = () => {
                     <h1>Unauthorised</h1>
                     <Link href={'http://localhost:8080/auctions'}>Back to Auctions</Link>
                 </div> }
+            <Snackbar
+                autoHideDuration={6000}
+                open={snackOpen}
+                onClose={handleSnackClose}
+                key={snackMessage}
+            >
+                <Alert onClose={handleSnackClose} severity="success" sx={{
+                    width: '100%' }}>
+                    {snackMessage}
+                </Alert>
+            </Snackbar>
         </div>
 
     )

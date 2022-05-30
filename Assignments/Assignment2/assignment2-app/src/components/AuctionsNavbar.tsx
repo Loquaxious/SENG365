@@ -14,6 +14,7 @@ import {
     Button,
 } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
+import HomeIcon from "@mui/icons-material/Home";
 
 
 const AuctionsNavbar = () => {
@@ -64,6 +65,13 @@ const AuctionsNavbar = () => {
             </FormGroup>
             <AppBar position="static">
                 <Toolbar>
+                    <IconButton
+                        size={"large"}
+                        color={"inherit"}
+                        onClick={() => navigate('/auctions')}
+                    >
+                        <HomeIcon/>
+                    </IconButton>
                     {authToken? <div>
                         <Button variant={"outlined"} color={"inherit"} endIcon={<AddIcon/>} onClick={handleAddAuction}>
                             Add Auction

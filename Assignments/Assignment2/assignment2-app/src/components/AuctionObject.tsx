@@ -41,7 +41,7 @@ const AuctionObject = (props: IAuctionProps) => {
                 <img src={`http://localhost:4941/api/v1/auctions/${auction.auctionId}/image`}
                      onError={({currentTarget}) => {
                          currentTarget.onerror = null;
-                         currentTarget.src=  "https://via.placeholder.com/300.jpg?text=Default+Auction+Image"}}
+                         currentTarget.src=  "https://via.placeholder.com/300.jpg?text=No+Auction+Image"}}
                      height={"300px"}
                      width={"300px"}
                 />

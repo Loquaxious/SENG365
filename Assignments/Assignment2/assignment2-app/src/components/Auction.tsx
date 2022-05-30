@@ -22,7 +22,7 @@ import {
     DialogActions,
     TextField,
     FormControl,
-    InputLabel, Select, MenuItem, InputAdornment
+    InputLabel, Select, MenuItem, InputAdornment, CardMedia, Snackbar
 } from "@mui/material";
 import AuctionObject from "./AuctionObject";
 import Navbar from "./Navbar";
@@ -54,8 +54,19 @@ const Auction = () => {
     const [description, setDescription] = React.useState("");
     const [reserve, setReserve] = React.useState<number>(NaN);
     const [image, setImage] = React.useState<File | null>();
-    const [bid, setBid] = React.useState(auction.highestBid + 1);
+    const [bid, setBid] = React.useState(0);
+    const [imageErrorFlag, setImageErrorFlag] = React.useState(false);
     const navigate = useNavigate();
+    const [snackOpen, setSnackOpen] = React.useState(false);
+    const [snackMessage, setSnackMessage] = React.useState("");
+
+    const handleSnackClose = (event?: React.SyntheticEvent | Event,
+                              reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setSnackOpen(false);
+    };
 
     const handleDeleteDialogOpen = () => {
         setOpenDeleteDialog(true);
@@ -79,12 +90,12 @@ const Auction = () => {
     };
 
     const prepareEditData = () => {
-        let resultDict = {}
+        let resultDict = {};
         const editDict = {
             title: title,
             description: description,
             categoryId: category,
-            endDate: endDate?.toISOString().slice(0, 19).replace('T', ' '),
+            endDate: endDate?.toISOString().split('T')[0]+' '+endDate?.toTimeString().split(' ')[0],
             reserve: reserve
         }
         for (let key in editDict) {
@@ -106,6 +117,8 @@ const Auction = () => {
                 }
             }
         }
+        console.log(endDate?.toISOString().split('T')[0]+' '+endDate?.toTimeString().split(' ')[0])
+        console.log(resultDict)
         return resultDict
     }
 
@@ -140,6 +153,9 @@ const Auction = () => {
       }).then(res => {
           setErrorFlag(false);
           setErrorMessage("");
+          getAuctionImage()
+          setSnackMessage("Image successfully changed")
+          setSnackOpen(true)
       }, (error) => {
           setErrorFlag(true);
           if(error.toString().includes('400')) {
@@ -168,15 +184,19 @@ const Auction = () => {
           if (image) {
               updateImage()
           }
+          getAuction()
           handleEditDialogClose()
+          setSnackMessage("Auction details successfully changed")
+          setSnackOpen(true)
       }, (error) => {
+          handleEditDialogClose()
           setErrorFlag(true);
           if(error.toString().includes('400')) {
               setErrorMessage("BAD REQUEST: Invalid data in one of the form fields")
           } else if (error.toString().includes('401')) {
               setErrorMessage("UNAUTHORISED: Invalid authentication token to edit this auction")
           } else if (error.toString().includes('403')) {
-              setErrorMessage("FORBIDDEN: Auction has bids on it, cannot edit the details")
+              setErrorMessage("FORBIDDEN: Invalid data input on edit")
           } else if (error.toString().includes('404')) {
               setErrorMessage("NOT FOUND: Auction not found")
           } else if (error.toString().includes('500')) {
@@ -196,7 +216,10 @@ const Auction = () => {
           setErrorMessage("")
           getBidders()
           getAuction()
+          setSnackMessage("Bid placed")
+          setSnackOpen(true)
       }, (error) => {
+          handleEditDialogClose()
           setErrorFlag(true)
           if(error.toString().includes('400')) {
               setErrorMessage("BAD REQUEST: Invalid bid")
@@ -267,9 +290,8 @@ const Auction = () => {
             }
         }
 
-
         return similarAuctions.map((auction: Auction) =>
-            <AuctionObject key={auction.auctionId} auction={auction}/>)
+            <AuctionObject key={auction.auctionId} auction={auction} />)
     }
 
     interface HeadCell {
@@ -313,24 +335,33 @@ const Auction = () => {
     }
 
     const list_of_bidders = () => {
-      return bids.map((row: Bid) =>
-          <TableRow hover tabIndex={-1} key={row.bidderId.toString() + row.amount.toString()}>
-              <TableCell align={"right"}>
-                  <Grid alignItems={"center"}>
-                      <img src={`http://localhost:4941/api/v1/users/${row.bidderId}/image`}
-                           onError={({currentTarget}) => {
-                               currentTarget.onerror = null;
-                               currentTarget.src=  "https://via.placeholder.com/150.jpg?text=Default+User+Avatar"}}
-                           height={"50px"}
-                           width={"50px"}
-                      />
-                  </Grid>
-              </TableCell>
-              <TableCell align={"right"}>{`${row.firstName} ${row.lastName}`}</TableCell>
-              <TableCell align={"right"}>{`$${row.amount}`}</TableCell>
-              <TableCell align={"right"}>{row.timestamp}</TableCell>
+      if (bids.length === 0) {
+          return <TableRow hover tabIndex={-1} key={0}>
+              <TableCell> <Typography>No bids yet!</Typography></TableCell>
+              <TableCell align={"right"}>...</TableCell>
+              <TableCell align={"right"}>...</TableCell>
+              <TableCell align={"right"}>...</TableCell>
           </TableRow>
-      )
+      } else{
+          return bids.map((row: Bid) =>
+              <TableRow hover tabIndex={-1} key={row.bidderId.toString() + row.amount.toString()}>
+                  <TableCell align={"right"}>
+                      <Grid alignItems={"right"}>
+                          <img src={`http://localhost:4941/api/v1/users/${row.bidderId}/image`}
+                               onError={({currentTarget}) => {
+                                   currentTarget.onerror = null;
+                                   currentTarget.src=  "https://via.placeholder.com/150.jpg?text=Default+User+Avatar"}}
+                               height={"50px"}
+                               width={"50px"}
+                          />
+                      </Grid>
+                  </TableCell>
+                  <TableCell align={"right"}>{`${row.firstName} ${row.lastName}`}</TableCell>
+                  <TableCell align={"right"}>{`$${row.amount}`}</TableCell>
+                  <TableCell align={"right"}>{`${new Date(row.timestamp).toLocaleTimeString('en-NZ')} on ${new Date(auction.endDate).toLocaleDateString()}`}</TableCell>
+              </TableRow>
+          )
+      }
     }
 
     const getAuction = () => {
@@ -339,8 +370,20 @@ const Auction = () => {
                 setErrorFlag(false)
                 setErrorMessage("")
                 setAuction(response.data)
+                setBid(response.data.highestBid + 1)
+                setTitle(response.data.title)
+                setDescription(response.data.description)
+                if (new Date(response.data.endDate) < new Date()) {
+                    setEndDate(new Date(new Date().getTime() + 30 * 60000))
+                } else {
+                    setEndDate(new Date(response.data.endDate))
+                }
+
+                setCategory(response.data.categoryId)
+                setReserve(response.data.reserve)
                 getSameSellerAuctions(response.data.sellerId)
                 getSameCategoryAuctions(response.data.categoryId)
+
             }, (error) => {
                 setErrorFlag(true)
                 setErrorFlag(true)
@@ -351,6 +394,15 @@ const Auction = () => {
                 } else {
                     setErrorMessage(error.toString())
                 }
+            })
+    }
+
+    const getAuctionImage = () => {
+        axios.get(`http://localhost:4941/api/v1/auctions/${id}/image`)
+            .then(res => {
+                setImageErrorFlag(false)
+            }, (error) => {
+                setImageErrorFlag(true)
             })
     }
 
@@ -374,6 +426,7 @@ const Auction = () => {
         getAuction()
         getCategories()
         getBidders()
+        getAuctionImage()
     }, [id])
 
 
@@ -397,15 +450,29 @@ const Auction = () => {
                     </Button>
                 </div>
                  : ""}
-            <Card style={{display: "flex", maxWidth: "1000px", minWidth: "320px", alignSelf: "center"}}>
-                <img src={`http://localhost:4941/api/v1/auctions/${id}/image`}
-                     onError={({currentTarget}) => {
-                         currentTarget.onerror = null;
-                         currentTarget.src=  "https://via.placeholder.com/500.jpg?text=No+Auction+Image"}}
-                     height={"100%"}
-                     width={"100%"}
-                />
-            </Card>
+            <Grid container spacing={2} alignItems={"center"}>
+                <Grid item xs={12}>
+                    <Card style={{display: "inline-flex", maxWidth: "960px", minWidth: "320px",}}>
+                        {imageErrorFlag?
+                            <CardMedia
+                                component={"img"}
+                                height={500}
+                                width={500}
+                                sx={{objectFit: "cover"}}
+                                image={"https://via.placeholder.com/500.jpg?text=No+Auction+Image"}
+                                alt={"User avatar image"}
+                            /> :
+                            <CardMedia
+                                component={"img"}
+                                height={500}
+                                width={500}
+                                sx={{objectFit: "cover"}}
+                                image={`http://localhost:4941/api/v1/auctions/${id}/image`}
+                                alt={"User avatar image"}
+                            />}
+                    </Card>
+                </Grid>
+            </Grid>
             <Card variant={"outlined"}>
                 <Typography variant={'h5'}>Details</Typography>
                 <Card>
@@ -414,7 +481,7 @@ const Auction = () => {
                 </Card>
                 <Card>
                     <Typography variant={"h6"}>End Date:</Typography>
-                    <Typography variant={"subtitle1"}>{auction.endDate}</Typography>
+                    <Typography variant={"subtitle1"}>{`${new Date(auction.endDate).toLocaleTimeString('en-NZ')} on ${new Date(auction.endDate).toLocaleDateString()}`}</Typography>
                 </Card>
                 <Card>
                     <Typography variant={"h6"}>Category:</Typography>
@@ -437,7 +504,7 @@ const Auction = () => {
                     <img src={`http://localhost:4941/api/v1/users/${auction.sellerId}/image`}
                          onError={({currentTarget}) => {
                              currentTarget.onerror = null;
-                             currentTarget.src=  "https://via.placeholder.com/40.jpg?Auction Seller"}}
+                             currentTarget.src=  "https://via.placeholder.com/40.jpg?text=Auction+Seller"}}
                          height={"40px"}
                          width={"40px"}
                     />
@@ -462,7 +529,7 @@ const Auction = () => {
                                 <Grid item xs={12} sm={6}>
                                     <TextField
                                         disabled={!authToken ||
-                                        userId && parseInt(userId, 10) === auction.sellerId ||
+                                            (userId && parseInt(userId, 10) === auction.sellerId) ||
                                         new Date(auction.endDate) < new Date()? true:false}
                                         InputProps={{startAdornment: <InputAdornment position={"start"}>$</InputAdornment>}}
                                         type={"number"}
@@ -472,7 +539,7 @@ const Auction = () => {
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
                                     <Button
-                                        disabled={!authToken || userId && parseInt(userId, 10) === auction.sellerId ||
+                                            disabled={!authToken || (userId && parseInt(userId, 10) === auction.sellerId) ||
                                         bid <= auction.highestBid || bid <= 0 || !bid ||
                                         new Date(auction.endDate) < new Date()? true:false}
                                         onClick={handlePlaceBid}
@@ -492,7 +559,7 @@ const Auction = () => {
                                 {bid <= auction.highestBid && authToken && new Date(auction.endDate) > new Date() &&
                                 // @ts-ignore
                                 parseInt(userId, 10) !== auction.sellerId?
-                                    <Typography variant={"subtitle1"} color={"red"}>Bid must be higher than the current bid</Typography>: ""}
+                                    <Typography variant={"subtitle1"} color={"red"}>Bid must be higher than $0 or the current bid</Typography>: ""}
 
                             </Grid>
                         </Box>
@@ -574,6 +641,7 @@ const Auction = () => {
                                             fullWidth
                                             id="title"
                                             label="Auction Title"
+                                            value={title}
                                             onChange={event => setTitle(event.target.value)}
                                             autoFocus
                                         />
@@ -581,6 +649,7 @@ const Auction = () => {
                                     <Grid item xs={12}>
                                         <TextField
                                             fullWidth
+                                            value={description}
                                             multiline
                                             id="description"
                                             label="Auction Description"
@@ -623,6 +692,7 @@ const Auction = () => {
                                     <Grid item xs={12}>
                                         <TextField
                                             fullWidth
+                                            value={reserve}
                                             type={"number"}
                                             label={"Reserve"}
                                             id={'reserve'}
@@ -662,6 +732,17 @@ const Auction = () => {
                     <Button onClick={handleEditDialogClose}>Cancel</Button>
                 </DialogActions>
             </Dialog>
+            <Snackbar
+                autoHideDuration={6000}
+                open={snackOpen}
+                onClose={handleSnackClose}
+                key={snackMessage}
+            >
+                <Alert onClose={handleSnackClose} severity="success" sx={{
+                    width: '100%' }}>
+                    {snackMessage}
+                </Alert>
+            </Snackbar>
         </div>
     )
 }
