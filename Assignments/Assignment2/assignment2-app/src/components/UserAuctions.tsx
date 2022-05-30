@@ -1,11 +1,7 @@
 import React from "react";
 import {
     Alert, AlertTitle,
-    Button, Card, Checkbox, Dialog, DialogActions, DialogContent, DialogTitle,
-    FormControl, FormControlLabel,
-    FormLabel,
-    InputLabel, ListItemText, MenuItem,
-    OutlinedInput, Pagination, Paper, Radio, RadioGroup, Select, Typography,
+    Card, Paper
 } from "@mui/material";
 import axios from "axios";
 import AuctionObject from "./AuctionObject";

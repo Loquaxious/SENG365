@@ -22,7 +22,7 @@ import {
     Checkbox,
     ListItemText,
     FormLabel,
-    RadioGroup, FormControlLabel, Radio, NativeSelect, Pagination
+    RadioGroup, FormControlLabel, Radio, NativeSelect, Pagination, Card, Grid
 } from "@mui/material";
 import AuctionObject from "./AuctionObject";
 import SearchIcon from '@mui/icons-material/Search';
@@ -244,24 +244,26 @@ const Auctions = () => {
                 </NativeSelect>
                 <Button variant={"outlined"} onClick={() => queryAuctions(pageNum)}>Sort</Button>
             </FormControl>
-            <Paper elevation={3} style={card}>
-                {errorFlag? "": `Displaying ${(10 * (pageNum - 1)) + 1}-${pageNum * 10 > count? count: pageNum * 10} of ${count} auctions:`}
-                <div style={{display:"inline-block", maxWidth:"1920px", minWidth:"320"}}>
-                    {errorFlag?
-                        <Alert severity="error">
-                            <AlertTitle>Error</AlertTitle>
-                            {errorMessage}
-                        </Alert>
-                        :""}
-                    {auction_rows()}
-                </div>
-                <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
-                    <Pagination count={Math.ceil(count / 10)} page={pageNum}
-                                onChange={(event, page) => {
-                                    setPageNum(page)
-                                    queryAuctions(page)}}/>
-                </div>
-            </Paper>
+            <Grid container spacing={2} alignItems={"center"}>
+                <Paper elevation={3} style={card}>
+                    {errorFlag? "": <Card>{`Displaying ${(10 * (pageNum - 1)) + 1}-${pageNum * 10 > count? count: pageNum * 10} of ${count} auctions:`}</Card>}
+                    <div style={{display:"inline-block", maxWidth:"1920px", minWidth:"320"}}>
+                        {errorFlag?
+                            <Alert severity="error">
+                                <AlertTitle>Error</AlertTitle>
+                                {errorMessage}
+                            </Alert>
+                            :""}
+                        {auction_rows()}
+                    </div>
+                    <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
+                        <Pagination count={Math.ceil(count / 10)} page={pageNum}
+                                    onChange={(event, page) => {
+                                        setPageNum(page)
+                                        queryAuctions(page)}}/>
+                    </div>
+                </Paper>
+            </Grid>
             <Dialog
                 open={openFilterDialog}
                 onClose={handleFilterDialogClose}
@@ -317,7 +319,6 @@ const Auctions = () => {
                 </DialogActions>
             </Dialog>
         </div>
-
     )
 }
 

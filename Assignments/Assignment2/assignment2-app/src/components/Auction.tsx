@@ -289,7 +289,6 @@ const Auction = () => {
                 similarAuctions.push(filteredSimilarCategoryAuctions[j])
             }
         }
-
         return similarAuctions.map((auction: Auction) =>
             <AuctionObject key={auction.auctionId} auction={auction} />)
     }
@@ -439,15 +438,22 @@ const Auction = () => {
                     {errorMessage}
                 </Alert>
                 :""}
-            <h1>{auction.title}</h1>
-            {authToken && userId && parseInt(userId, 10) === auction.sellerId && auction.numBids === 0?
+            <h1 style={{textAlign: "left", paddingLeft: "20px"}}>{auction.title}</h1>
+            {authToken && userId && parseInt(userId, 10) === auction.sellerId?
                 <div>
-                    <Button variant={"outlined"} endIcon={<EditIcon/>} onClick={handleEditDialogOpen}>
+                    <Button variant={"outlined"}
+                            endIcon={<EditIcon/>}
+                            onClick={handleEditDialogOpen}
+                            disabled={auction.numBids !== 0}>
                         Edit
                     </Button>
-                    <Button variant={"outlined"} endIcon={<DeleteIcon/>} onClick={handleDeleteDialogOpen}>
+                    <Button variant={"outlined"}
+                            endIcon={<DeleteIcon/>}
+                            onClick={handleDeleteDialogOpen}
+                            disabled={auction.numBids !== 0}>
                         Delete
                     </Button>
+                    {auction.numBids === 0?"":<Typography variant={"caption"} color={"grey"}>Cannot edit or delete as there is bids on this auction</Typography>}
                 </div>
                  : ""}
             <Grid container spacing={2} alignItems={"center"}>
@@ -475,6 +481,10 @@ const Auction = () => {
             </Grid>
             <Card variant={"outlined"}>
                 <Typography variant={'h5'}>Details</Typography>
+                <Card>
+                    <Typography variant={"h6"}>Title:</Typography>
+                    <Typography variant={"subtitle1"}>{auction.title}</Typography>
+                </Card>
                 <Card>
                     <Typography variant={"h6"}>Description:</Typography>
                     <Typography variant={"subtitle1"}>{auction.description}</Typography>
@@ -645,6 +655,8 @@ const Auction = () => {
                                             onChange={event => setTitle(event.target.value)}
                                             autoFocus
                                         />
+                                        {title.length === 0 || title.length <= 128? "":
+                                            <Typography variant={"caption"} color={'red'}>Title must be no longer than 128 characters</Typography> }
                                     </Grid>
                                     <Grid item xs={12}>
                                         <TextField
@@ -656,6 +668,8 @@ const Auction = () => {
                                             name="description"
                                             onChange={event => setDescription(event.target.value)}
                                         />
+                                        {description.length === 0 || description.length <= 2048? "":
+                                            <Typography variant={"caption"} color={'red'}>Description must be no longer than 2048 characters</Typography> }
                                     </Grid>
                                     <Grid item xs={12}>
                                         <FormControl fullWidth>
@@ -688,6 +702,10 @@ const Auction = () => {
                                             dateFormat={"MMMM d, yyyy h:mm aa"}
                                             placeholderText={"Select the auction end date *"}
                                         />
+                                        {endDate? "" : <Typography variant={"caption"} color={"red"}>Select an auction end date</Typography>}
+                                        {/*// @ts-ignore*/}
+                                        {endDate > new Date()? "":
+                                            <Typography variant={"caption"} color={"red"}>Auction end date must be in the future</Typography> }
                                     </Grid>
                                     <Grid item xs={12}>
                                         <TextField
@@ -719,7 +737,7 @@ const Auction = () => {
                                     fullWidth
                                     variant="contained"
                                     sx={{ mt: 3, mb: 2 }}
-                                    disabled={reserve < 1? true: false}
+                                    disabled={reserve > 1 && title.length <= 128 && description.length <= 2048? false: true}
                                     onClick={() => {editAuction()}}
                                 >
                                     Edit Auction

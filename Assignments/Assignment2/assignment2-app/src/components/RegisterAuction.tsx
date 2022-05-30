@@ -26,9 +26,9 @@ const RegisterAuction = () => {
     const [errorFlag, setErrorFlag] = React.useState(false);
     const [errorMessage, setErrorMessage] = React.useState("");
     const [categories, setCategories] = React.useState<Category[]>([]);
-    const [auctionTitle, setAuctionTitle] = React.useState("");
+    const [title, setTitle] = React.useState("");
     const [category, setCategory] = React.useState("");
-    const [endDate, setEndDate] = React.useState<Date|null>(null);
+    const [endDate, setEndDate] = React.useState<Date|null>(new Date(new Date().getTime() + 30 * 60000));
     const [description, setDescription] = React.useState("");
     const [reserve, setReserve] = React.useState<number>(NaN);
     const [image, setImage] = React.useState<File | null>();
@@ -59,7 +59,7 @@ const RegisterAuction = () => {
     const prepareAuctionData = () => {
         if (!isNaN(reserve)) {
             return {
-                title: auctionTitle,
+                title: title,
                 categoryId: category,
                 endDate: endDate?.toISOString().slice(0, 19).replace('T', ' '),
                 description: description,
@@ -67,7 +67,7 @@ const RegisterAuction = () => {
             }
         } else {
             return {
-                title: auctionTitle,
+                title: title,
                 categoryId: category,
                 endDate: endDate?.toISOString().slice(0, 19).replace('T', ' '),
                 description: description
@@ -119,6 +119,7 @@ const RegisterAuction = () => {
         getCategories()
     }, [])
 
+    // @ts-ignore
     return (
         <ThemeProvider theme={theme}>
             {!authToken?
@@ -158,9 +159,11 @@ const RegisterAuction = () => {
                                             fullWidth
                                             id="title"
                                             label="Auction Title"
-                                            onChange={event => setAuctionTitle(event.target.value)}
+                                            onChange={event => setTitle(event.target.value)}
                                             autoFocus
                                         />
+                                        {title.length === 0 || title.length <= 128? "":
+                                        <Typography variant={"caption"} color={'red'}>Title must be no longer than 128 characters</Typography> }
                                     </Grid>
                                     <Grid item xs={12}>
                                         <TextField
@@ -172,6 +175,8 @@ const RegisterAuction = () => {
                                             name="description"
                                             onChange={event => setDescription(event.target.value)}
                                         />
+                                        {description.length === 0 || description.length <= 2048? "":
+                                            <Typography variant={"caption"} color={'red'}>Description must be no longer than 2048 characters</Typography> }
                                     </Grid>
                                     <Grid item xs={12}>
                                         <FormControl fullWidth>
@@ -194,6 +199,7 @@ const RegisterAuction = () => {
                                         </FormControl>
                                     </Grid>
                                     <Grid item xs={12}>
+                                        <Typography variant={"subtitle1"}>Auction End Date:</Typography>
                                         <DatePicker
                                             selected={endDate}
                                             minDate={new Date()}
@@ -204,6 +210,10 @@ const RegisterAuction = () => {
                                             dateFormat={"MMMM d, yyyy h:mm aa"}
                                             placeholderText={"Select the auction end date *"}
                                             />
+                                        {endDate? "" : <Typography variant={"caption"} color={"red"}>Select an auction end date</Typography>}
+                                        {/*// @ts-ignore*/}
+                                        {endDate > new Date()? "":
+                                        <Typography variant={"caption"} color={"red"}>Auction end date must be in the future</Typography> }
                                     </Grid>
                                     <Grid item xs={12}>
                                         <TextField
@@ -217,6 +227,7 @@ const RegisterAuction = () => {
                                         {reserve !== NaN && reserve < 1 ? <Typography color={"red"}>Reserve must be 1 or above</Typography>:""}
                                     </Grid>
                                     <Grid item xs={12} >
+                                        <Typography variant={"subtitle1"}>Auction Image:</Typography>
                                         <Button
                                             variant="contained"
                                             component="label"
@@ -234,8 +245,8 @@ const RegisterAuction = () => {
                                     fullWidth
                                     variant="contained"
                                     sx={{ mt: 3, mb: 2 }}
-                                    disabled={!endDate || endDate < new Date() || reserve < 1 || auctionTitle.length === 0 ||
-                                    description.length === 0 || category === ""? true: false}
+                                    disabled={!endDate || endDate < new Date() || reserve < 1 ||(title.length === 0 && title.length >= 128) ||
+                                        (description.length === 0 && description.length >= 2048) || category === ""? true: false}
                                     onClick={() => {handleSubmit()}}
                                 >
                                     Register Auction

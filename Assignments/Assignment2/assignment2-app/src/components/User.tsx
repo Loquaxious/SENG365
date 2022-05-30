@@ -209,7 +209,7 @@ const User = () => {
                             {errorMessage}
                         </Alert>
                         :""}
-                    <h1>{user.firstName + " " + user.lastName}</h1>
+                    <h1 style={{textAlign: "left", paddingLeft: "20px"}}>{"Your Profile"}</h1>
                     <Grid container spacing={2} alignItems={"center"}>
                         <Grid item xs={12}>
                             <Card style={{display: "inline-flex", maxWidth: "960px", minWidth: "320px",}}>
@@ -269,7 +269,10 @@ const User = () => {
                                                 id="firstName"
                                                 label="First Name"
                                                 autoFocus
+                                                onChange={handleChange("firstName")}
                                             />
+                                            {values.firstName.length === 0 || values.firstName.length <= 64? "":
+                                                <Typography variant={"caption"} color={"red"}>First name must be no longer than 64 characters</Typography>}
                                         </Grid>
                                         <Grid item xs={12} sm={6}>
                                             <TextField
@@ -278,7 +281,10 @@ const User = () => {
                                                 id="lastName"
                                                 label="Last Name"
                                                 name="lastName"
+                                                onChange={handleChange("lastName")}
                                             />
+                                            {values.lastName.length === 0 || values.lastName.length <= 64? "":
+                                                <Typography variant={"caption"} color={"red"}>Last name must be no longer than 64 characters</Typography>}
                                         </Grid>
                                         <Grid item xs={12}>
                                             <TextField
@@ -290,8 +296,9 @@ const User = () => {
                                                 onChange={handleChange('email')}
                                             />
                                             {values.email.length === 0 || values.email.match("@")?"":
-                                                <Typography variant={"caption"} color={"red"}>Email must include a "@"</Typography>
-                                            }
+                                                <Typography variant={"caption"} color={"red"}>Email must include a "@" </Typography>}
+                                            {values.email.length === 0 || values.email.length <= 128? "":
+                                                <Typography variant={"caption"} color={"red"}>Email must be no longer than 128 characters</Typography>}
                                         </Grid>
                                         <Grid item xs={12}>
                                             <TextField
@@ -304,7 +311,10 @@ const User = () => {
                                                 autoComplete="new-password"
                                                 label="New Password"
                                             />
-                                            {values.password.length === 0 || values.password.length >= 6? "" : <Typography variant={"caption"} color={"red"}>Password must be longer than 6 characters</Typography>}
+                                            {values.password.length === 0 || values.password.length >= 6? "" :
+                                                <Typography variant={"caption"} color={"red"}>Password must be longer than 6 characters</Typography>}
+                                            {values.password.length == 0 || values.password.length <= 256? "" :
+                                                <Typography variant={"caption"} color={"red"}>Password must be no longer than 256 characters</Typography>}
                                         </Grid>
                                         {values.password.length !== 0?
                                             <Grid>
@@ -321,6 +331,10 @@ const User = () => {
                                                     />
                                                 </Grid>
                                                 {currentPassword.length !== 0? "": <Typography variant={"caption"} color={"red"}>You must enter your current password to change your password</Typography>}
+                                                {currentPassword.length == 0 || currentPassword.length >= 6? "" :
+                                                    <Typography variant={"caption"} color={"red"}>Password must be longer than 6 characters</Typography>}
+                                                {currentPassword.length == 0 || currentPassword.length <= 256? "" :
+                                                    <Typography variant={"caption"} color={"red"}>Password must be no longer than 256 characters</Typography>}
                                             </Grid>
                                             : ""}
                                         <Grid item xs={12} sm={6}>
@@ -328,7 +342,7 @@ const User = () => {
                                                 variant="contained"
                                                 component="label"
                                                 disabled={image?true:false}
-                                            >Upload new Image
+                                            >Upload new image
                                                 <input
                                                     type="file"
                                                     hidden
@@ -360,9 +374,11 @@ const User = () => {
                                         fullWidth
                                         variant="contained"
                                         sx={{ mt: 3, mb: 2 }}
-                                        disabled={(values.email.length !== 0 && !values.email.match("@")) ||
-                                        (values.password.length !== 0 && ((values.password.length <= 6 || currentPassword.length === 0)))
-                                         ? true : false}
+                                        disabled={!((values.firstName.length <= 64) &&
+                                            (values.lastName.length <= 64) &&
+                                            (values.email.length <= 128 && (values.email.match("@") || values.email.length === 0)) &&
+                                            (((values.password.length >= 6 && currentPassword.length >= 6) || values.password.length === 0) && values.password.length <= 256) &&
+                                            (currentPassword.length <= 256))}
                                     >
                                         Update Details
                                     </Button>

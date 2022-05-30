@@ -164,8 +164,11 @@ const Register = () => {
                                 fullWidth
                                 id="firstName"
                                 label="First Name"
+                                onChange={handleChange("firstName")}
                                 autoFocus
                             />
+                            {values.firstName.length === 0 || values.firstName.length <= 64? "":
+                                <Typography variant={"caption"} color={"red"}>First name must be no longer than 64 characters</Typography>}
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextField
@@ -175,7 +178,10 @@ const Register = () => {
                                 label="Last Name"
                                 name="lastName"
                                 autoComplete="family-name"
+                                onChange={handleChange('lastName')}
                             />
+                            {values.lastName.length === 0 || values.lastName.length <= 64? "":
+                                <Typography variant={"caption"} color={"red"}>Last name must be no longer than 64 characters</Typography>}
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
@@ -185,10 +191,15 @@ const Register = () => {
                                 label="Email Address"
                                 name="email"
                                 autoComplete="email"
+                                onChange={handleChange("email")}
                             />
+                            {values.email.length === 0 || values.email.match("@")? "":
+                                <Typography variant={"caption"} color={"red"}>Email must have a "@" symbol </Typography>}
+                            {values.email.length === 0 || values.email.length <= 128? "":
+                                <Typography variant={"caption"} color={"red"}>Email must be no longer than 128 characters</Typography>}
                         </Grid>
                         <Grid item xs={12}>
-                            <OutlinedInput
+                            <TextField
                                 required
                                 fullWidth
                                 name="password"
@@ -197,8 +208,7 @@ const Register = () => {
                                 onChange={handleChange('password')}
                                 id="password"
                                 autoComplete="new-password"
-                                endAdornment={
-                                    <InputAdornment position="end">
+                                InputProps={{endAdornment:<InputAdornment position="end">
                                         <IconButton
                                             aria-label="toggle password visibility"
                                             onClick={handleClickShowPassword}
@@ -207,13 +217,16 @@ const Register = () => {
                                         >
                                             {values.showPassword ? <VisibilityOff /> : <Visibility />}
                                         </IconButton>
-                                    </InputAdornment>
-                                }
+                                    </InputAdornment>}}
                                 label="Password"
                             />
-                            {values.password.length >= 6? "" : <Typography variant={"caption"} color={"red"}>Password must be longer than 6 characters</Typography>}
+                            {values.password.length == 0 || values.password.length >= 6? "" :
+                                <Typography variant={"caption"} color={"red"}>Password must be longer than 6 characters</Typography>}
+                            {values.password.length == 0 || values.password.length <= 256? "" :
+                                <Typography variant={"caption"} color={"red"}>Password must be no longer than 256 characters</Typography>}
                         </Grid>
-                        <Grid xs={12} >
+                        <Grid item xs={12} >
+                            <Typography variant={"subtitle2"}>User Image Upload:</Typography>
                             <Button
                                 variant="contained"
                                 component="label"
@@ -232,7 +245,10 @@ const Register = () => {
                         fullWidth
                         variant="contained"
                         sx={{ mt: 3, mb: 2 }}
-                        disabled={values.password.length >= 6? false : true}
+                        disabled={!((values.firstName.length<= 64 && values.firstName.length > 0) &&
+                            (values.lastName.length <= 64 && values.lastName.length > 0) &&
+                            (values.email.length <= 128 && values.email.match("@") && values.email.length > 0) &&
+                            (values.password.length >= 6 && values.password.length <= 256 && values.password.length > 0))}
                     >
                         Sign Up
                     </Button>
